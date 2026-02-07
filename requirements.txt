@@ -1,0 +1,17 @@
+# Django and core dependencies
+Django==5.2.10
+asgiref==3.11.0
+sqlparse==0.5.5
+tzdata==2025.3
+
+# Django extensions
+django-htmx==1.27.0
+
+# Image processing
+pillow==12.1.0
+
+# Static files (production)
+whitenoise==6.11.0
+
+# Database (MySQL for production)
+PyMySQL==1.1.2

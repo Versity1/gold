@@ -1,0 +1,5 @@
+convert this website to a gold related investment broker website, also change the UI to be more modern and user friendly and gold related user interface. Use a dark theme and add a gold color scheme. This website is for a gold investment broker that allows users to buy and sell gold online, invest in gold, and trade gold. The name of the website is "Gold Investment Broker"
+
+You are to convert the website from oil related to gold related investment broker website without making any changes to the backend code. The only thing you are to do is to change the UI and the write-ups to show that it is a gold investment broker website. We shall add any other features to the website as we progress. 
+
+NOTE: TAKE INSPIRATION FROM THE THE HTML FILES IN THE "/FRONT" DIRECTORY for the UI design

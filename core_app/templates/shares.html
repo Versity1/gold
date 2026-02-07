@@ -1,0 +1,407 @@
+{% extends 'base_dashboard.html' %}
+
+{% block title %}Shares & Bonds Purchase - Techo Drill{% endblock %}
+
+{% block content %}
+    <!-- Main Content -->
+    <main class="w-full max-w-7xl mx-auto md:p-6 lg:p-8 pb-24 md:pb-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left Column: Asset Info & Chart -->
+            <div class="lg:col-span-2">
+                <!-- Profile Header -->
+                <div class="flex flex-col md:flex-row items-center md:items-start gap-6 px-4 pt-2 pb-6 md:px-0">
+                    <div class="bg-center bg-no-repeat bg-cover rounded-xl h-24 w-24 shadow-md border-2 border-white dark:border-[#2A3B4D]" data-alt="Oil rig silhouette against a sunset gradient" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAeIi0JFoUfUJYj6a65pedsVBt7RYgR42TW8hZ3e0BaMwZH8u-uxmRdBpcuBobO5PNMYUpHZ6hJ4Z1HQxE0bOksfzKnSl90FNV5ZF7zs5dpwxuUQrR5LwqFgHHkAxr9skaGnh58JHxsOES99jwzAqopJDzfrj8Ch5BeI4Jv4ys8h9Yp9tQ_xtf3zsyXST_-gtwj0rTY82twQUbiy3qnBuR6j7lSyj7Rum0MoR_YkkKycodtQRXwjvNOPmjSLsc6dINJHCGAbFyX3dY3");'></div>
+                    <div class="flex flex-col items-center md:items-start justify-center flex-1">
+                        <h1 class="text-text-main-light dark:text-text-main-dark text-3xl font-bold leading-tight tracking-[-0.015em] text-center md:text-left">{{ tdi_share.name|default:"Techo Drill Innovation" }}</h1>
+                         <div class="flex items-center gap-3 mt-2">
+                            <span class="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider">NASDQ: {{ tdi_share.ticker|default:"TDI" }}</span>
+                            <span class="text-text-sec-light dark:text-text-sec-dark text-sm font-medium">Oil & Gas Exploration</span>
+                        </div>
+                    </div>
+                    <!-- Segmented Buttons (Desktop Right Aligned) -->
+                    <div class="flex h-10 w-full md:w-auto items-center justify-center rounded-lg bg-gray-100 dark:bg-background-dark p-1">
+                        <label class="flex cursor-pointer h-full flex-1 md:w-28 items-center justify-center overflow-hidden rounded-md transition-all has-[:checked]:bg-white dark:has-[:checked]:bg-[#2A3B4D] has-[:checked]:shadow-sm has-[:checked]:text-primary text-text-sec-light dark:text-text-sec-dark text-xs font-bold uppercase tracking-wide">
+                            <span class="truncate">Stock Equity</span>
+                            <input checked="" class="hidden" name="asset_type" type="radio" value="Shares"/>
+                        </label>
+                        <label class="flex cursor-pointer h-full flex-1 md:w-28 items-center justify-center overflow-hidden rounded-md transition-all has-[:checked]:bg-white dark:has-[:checked]:bg-[#2A3B4D] has-[:checked]:shadow-sm has-[:checked]:text-primary text-text-sec-light dark:text-text-sec-dark text-xs font-bold uppercase tracking-wide">
+                            <span class="truncate">Fixed Returns</span>
+                            <input class="hidden" name="asset_type" type="radio" value="Bonds"/>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Price & Chart Section -->
+                <div class="bg-surface-light dark:bg-surface-dark rounded-xl md:border md:border-gray-200 md:dark:border-gray-800 md:p-6 mb-6">
+                    <div class="px-4 md:px-0 pb-6">
+                        <div class="flex flex-col gap-1 mb-6">
+                            <p class="text-text-sec-light dark:text-text-sec-dark text-sm font-medium uppercase tracking-wider">Current Price</p>
+                            <div class="flex items-baseline gap-4">
+                                <h2 class="text-text-main-light dark:text-text-main-dark text-5xl font-bold leading-none tracking-tight">${{ tdi_share.current_price|default:"42.50" }}</h2>
+                                {% if tdi_share.previous_price %}
+                                <div class="flex items-center {% if tdi_share.current_price >= tdi_share.previous_price %}text-[#078838] bg-[#078838]/10{% else %}text-red-500 bg-red-500/10{% endif %} px-3 py-1 rounded-lg text-base font-bold">
+                                    <span class="material-symbols-outlined text-[18px] mr-1">{% if tdi_share.current_price >= tdi_share.previous_price %}trending_up{% else %}trending_down{% endif %}</span>
+                                    {{ tdi_share.growth_percentage|default:"1.2" }}%
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <!-- Chart Container -->
+                        <div class="w-full h-[200px] md:h-[300px] relative mb-6">
+                            <canvas id="priceChart"></canvas>
+                        </div>
+                        <!-- Time Filters -->
+                        <div class="flex justify-between md:justify-start md:gap-4 px-2 md:px-0">
+                            <button onclick="updateChartPeriod('1D')" class="time-filter-btn text-text-sec-light dark:text-text-sec-dark hover:text-primary text-xs font-bold px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" data-period="1D">1D</button>
+                            <button onclick="updateChartPeriod('1W')" class="time-filter-btn text-white bg-primary text-xs font-bold px-4 py-2 rounded-lg transition-colors shadow-md active" data-period="1W">1W</button>
+                            <button onclick="updateChartPeriod('1M')" class="time-filter-btn text-text-sec-light dark:text-text-sec-dark hover:text-primary text-xs font-bold px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" data-period="1M">1M</button>
+                            <button onclick="updateChartPeriod('1Y')" class="time-filter-btn text-text-sec-light dark:text-text-sec-dark hover:text-primary text-xs font-bold px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" data-period="1Y">1Y</button>
+                            <button onclick="updateChartPeriod('ALL')" class="time-filter-btn text-text-sec-light dark:text-text-sec-dark hover:text-primary text-xs font-bold px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" data-period="ALL">ALL</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- My Holdings -->
+                {% if user_holdings %}
+                <div class="px-4 md:px-0 mb-8">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-text-main-light dark:text-text-main-dark text-lg font-bold">My Holdings</h3>
+                        <div class="flex gap-4 text-sm">
+                            <div class="text-right">
+                                <p class="text-[10px] text-text-sec-light uppercase">Portfolio Value</p>
+                                <p class="font-bold text-text-main-light dark:text-text-main-dark">${{ portfolio_value|floatformat:2 }}</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-[10px] text-text-sec-light uppercase">Total Gain</p>
+                                <p class="font-bold {% if total_gain >= 0 %}text-green-600{% else %}text-red-500{% endif %}">${{ total_gain|floatformat:2 }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-3">
+                        {% for item in user_holdings %}
+                        <div class="flex items-center justify-between p-4 rounded-xl bg-gradient-to-r from-primary/5 to-transparent border border-primary/20 shadow-sm">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center font-bold text-primary">{{ item.holding.asset.ticker|slice:":1" }}</div>
+                                <div>
+                                    <p class="text-text-main-light dark:text-text-main-dark font-bold">{{ item.holding.asset.name }}</p>
+                                    <p class="text-xs text-text-sec-light">{{ item.holding.units|floatformat:4 }} units @ ${{ item.holding.purchase_price|floatformat:2 }}</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-text-main-light dark:text-text-main-dark font-bold">${{ item.current_value|floatformat:2 }}</p>
+                                <p class="text-xs {% if item.unrealized_gain >= 0 %}text-green-500{% else %}text-red-500{% endif %} font-bold">
+                                    {% if item.unrealized_gain >= 0 %}+{% endif %}{{ item.gain_percent|floatformat:2 }}%
+                                </p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Market List -->
+                <div class="px-4 md:px-0 mb-8">
+                    <h3 class="text-text-main-light dark:text-text-main-dark text-lg font-bold mb-4">Available Assets</h3>
+                    <div class="space-y-4">
+                        {% for asset in other_assets %}
+                        <div onclick="selectAsset('{{ asset.id }}', '{{ asset.name }}', '{{ asset.ticker }}', '{{ asset.current_price }}')" class="flex items-center justify-between p-4 rounded-xl bg-surface-light dark:bg-surface-dark border border-gray-200 dark:border-gray-700 shadow-sm hover:border-primary hover:shadow-md transition-all cursor-pointer asset-card" data-asset-id="{{ asset.id }}">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center font-bold text-primary">{{ asset.ticker|slice:":1" }}</div>
+                                <div>
+                                    <p class="text-text-main-light dark:text-text-main-dark font-bold">{{ asset.name }}</p>
+                                    <p class="text-xs text-text-sec-light dark:text-text-sec-dark uppercase tracking-wider">{{ asset.ticker }} • {{ asset.asset_type|title }}</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-text-main-light dark:text-text-main-dark font-bold">${{ asset.current_price }}</p>
+                                {% if asset.previous_price %}
+                                <p class="text-xs {% if asset.current_price >= asset.previous_price %}text-green-500{% else %}text-red-500{% endif %} font-bold">
+                                    {% if asset.current_price >= asset.previous_price %}+{% endif %}{{ asset.growth_percentage|default:0 }}%
+                                </p>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% empty %}
+                        <p class="text-center py-10 text-gray-500 italic">No other assets available for listing.</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Purchase Interface (Sticky on Desktop) -->
+            <div class="lg:col-span-1">
+                 <div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-gray-200 dark:border-gray-800 shadow-lg sticky top-24 p-6">
+                    <form id="purchaseForm" action="{% if tdi_share %}{% url 'buy_asset' tdi_share.id %}{% endif %}" method="POST">
+                        {% csrf_token %}
+                        <!-- Selected Asset Display -->
+                        <div class="pb-4 border-b border-gray-100 dark:border-gray-800 mb-4">
+                            <p class="text-[10px] text-text-sec-light uppercase tracking-widest mb-2">Selected Asset</p>
+                            <div class="flex items-center gap-3">
+                                <div id="selectedAssetIcon" class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center font-bold text-primary">{{ tdi_share.ticker|slice:":1"|default:"T" }}</div>
+                                <div>
+                                    <p id="selectedAssetName" class="text-text-main-light dark:text-text-main-dark font-bold">{{ tdi_share.name|default:"Techo Drill Innovation" }}</p>
+                                    <p id="selectedAssetTicker" class="text-xs text-text-sec-light">{{ tdi_share.ticker|default:"TDI" }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Purchase Input -->
+                        <div class="pb-6">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-text-main-light dark:text-text-main-dark text-lg font-bold">Purchase</h3>
+                                <span class="text-xs font-bold text-text-sec-light">Balance: ${{ account.balance|floatformat:2 }}</span>
+                            </div>
+                            <div class="flex flex-col gap-4">
+                                <div class="relative group">
+                                    <div class="absolute top-1/2 left-4 -translate-y-1/2 text-text-main-light dark:text-text-main-dark font-bold text-xl pointer-events-none">$</div>
+                                    <input id="buy-amount" name="amount" class="w-full bg-background-light dark:bg-background-dark text-text-main-light dark:text-text-main-dark text-2xl font-bold pl-10 pr-20 py-4 rounded-xl border border-gray-200 dark:border-gray-700 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all" placeholder="0.00" type="number" step="0.01" oninput="calculateUnits()" required/>
+                                 </div>
+                                <div class="flex justify-between items-center px-2">
+                                    <span class="text-text-sec-light dark:text-text-sec-dark text-sm">Est. Units</span>
+                                    <span class="text-text-main-light dark:text-text-main-dark font-bold text-lg">~<span id="est-units">0.00</span> <span id="tickerLabel">{{ tdi_share.ticker|default:"Units" }}</span></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Payment Methods -->
+                        <div class="pb-8">
+                            <h3 class="text-text-main-light dark:text-text-main-dark text-lg font-bold mb-4">Select Source</h3>
+                            <div class="grid grid-cols-1 gap-2">
+                                <!-- Account Balance Option -->
+                                <label class="relative flex items-center p-3 rounded-xl border border-gray-200 dark:border-gray-700 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-all has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10">
+                                    <input type="radio" name="payment_method" value="balance" class="hidden peer" checked>
+                                    <div class="size-8 rounded-full bg-primary/10 text-primary flex items-center justify-center mr-3">
+                                        <span class="material-symbols-outlined text-sm">account_balance_wallet</span>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="text-xs font-bold text-text-main-light dark:text-text-main-dark">Account Balance</p>
+                                        <p class="text-[10px] text-text-sec-light dark:text-text-sec-dark">${{ account.balance|floatformat:2 }} available</p>
+                                    </div>
+                                    <div class="peer-checked:block hidden text-primary">
+                                        <span class="material-symbols-outlined text-sm">check_circle</span>
+                                    </div>
+                                </label>
+
+                                <!-- Dynamic Payment Methods -->
+                                {% for pm in payment_methods %}
+                                <label class="relative flex items-center p-3 rounded-xl border border-gray-200 dark:border-gray-700 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-all has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10">
+                                    <input type="radio" name="payment_method" value="{{ pm.id }}" class="hidden peer">
+                                    <div class="size-8 rounded-full bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 flex items-center justify-center mr-3">
+                                        <span class="material-symbols-outlined text-sm">{% if 'BTC' in pm.name %}currency_bitcoin{% else %}payments{% endif %}</span>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="text-xs font-bold text-text-main-light dark:text-text-main-dark">{{ pm.name }}</p>
+                                        <p class="text-[10px] text-text-sec-light dark:text-text-sec-dark">Direct Deposit</p>
+                                    </div>
+                                    <div class="peer-checked:block hidden text-primary">
+                                        <span class="material-symbols-outlined text-sm">check_circle</span>
+                                    </div>
+                                </label>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        
+                        <!-- Action Button -->
+                        <div class="flex flex-col gap-3">
+                            <button type="submit" class="w-full py-4 bg-primary text-white font-black rounded-xl shadow-lg hover:shadow-xl hover:bg-primary-dark transition-all transform active:scale-95 text-lg">
+                                Confirm Purchase
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    
+    <script>
+        let currentPrice = {{ tdi_share.current_price|default:1 }};
+        let currentAssetId = {{ tdi_share.id|default:"null" }};
+        let priceChart = null;
+        
+        // Generate sample price data based on current price and period
+        function generatePriceData(basePrice, period) {
+            const data = [];
+            const labels = [];
+            let points = 7;
+            let dateFormat = { month: 'short', day: 'numeric' };
+            
+            switch(period) {
+                case '1D': points = 24; dateFormat = { hour: '2-digit' }; break;
+                case '1W': points = 7; break;
+                case '1M': points = 30; break;
+                case '1Y': points = 12; dateFormat = { month: 'short' }; break;
+                case 'ALL': points = 24; dateFormat = { year: '2-digit', month: 'short' }; break;
+            }
+            
+            const volatility = basePrice * 0.05; // 5% volatility
+            let price = basePrice * 0.9; // Start lower
+            
+            for (let i = 0; i < points; i++) {
+                const change = (Math.random() - 0.4) * volatility; // Slight upward bias
+                price = Math.max(price + change, basePrice * 0.7);
+                data.push(parseFloat(price.toFixed(2)));
+                
+                const date = new Date();
+                if (period === '1D') date.setHours(date.getHours() - (points - i));
+                else if (period === '1W') date.setDate(date.getDate() - (points - i));
+                else if (period === '1M') date.setDate(date.getDate() - (points - i));
+                else if (period === '1Y') date.setMonth(date.getMonth() - (points - i));
+                else date.setMonth(date.getMonth() - (points - i) * 2);
+                
+                labels.push(date.toLocaleDateString('en-US', dateFormat));
+            }
+            
+            // Ensure last point is current price
+            data[data.length - 1] = parseFloat(basePrice);
+            labels[labels.length - 1] = 'Now';
+            
+            return { data, labels };
+        }
+        
+        // Initialize chart
+        function initChart() {
+            const ctx = document.getElementById('priceChart').getContext('2d');
+            const { data, labels } = generatePriceData(currentPrice, '1W');
+            
+            // Create gradient
+            const gradient = ctx.createLinearGradient(0, 0, 0, 300);
+            gradient.addColorStop(0, 'rgba(19, 127, 236, 0.3)');
+            gradient.addColorStop(1, 'rgba(19, 127, 236, 0)');
+            
+            priceChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Price',
+                        data: data,
+                        borderColor: '#137fec',
+                        backgroundColor: gradient,
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 0,
+                        pointHoverRadius: 6,
+                        pointHoverBorderWidth: 3,
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: '#137fec'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        intersect: false,
+                        mode: 'index'
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            titleColor: '#fff',
+                            bodyColor: '#fff',
+                            padding: 12,
+                            displayColors: false,
+                            callbacks: {
+                                label: function(context) {
+                                    return '$' + context.parsed.y.toFixed(2);
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { display: false },
+                            ticks: { 
+                                color: '#6b7280',
+                                maxTicksLimit: 6
+                            }
+                        },
+                        y: {
+                            grid: { 
+                                color: 'rgba(107, 114, 128, 0.1)',
+                                drawBorder: false
+                            },
+                            ticks: { 
+                                color: '#6b7280',
+                                callback: function(value) {
+                                    return '$' + value.toFixed(0);
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Update chart for different time periods
+        function updateChartPeriod(period) {
+            const { data, labels } = generatePriceData(currentPrice, period);
+            
+            priceChart.data.labels = labels;
+            priceChart.data.datasets[0].data = data;
+            priceChart.update('active');
+            
+            // Update button styles
+            document.querySelectorAll('.time-filter-btn').forEach(btn => {
+                btn.classList.remove('text-white', 'bg-primary', 'shadow-md');
+                btn.classList.add('text-text-sec-light', 'dark:text-text-sec-dark');
+            });
+            const activeBtn = document.querySelector(`.time-filter-btn[data-period="${period}"]`);
+            if (activeBtn) {
+                activeBtn.classList.add('text-white', 'bg-primary', 'shadow-md');
+                activeBtn.classList.remove('text-text-sec-light', 'dark:text-text-sec-dark');
+            }
+        }
+        
+        function calculateUnits() {
+            const amount = document.getElementById('buy-amount').value;
+            if (amount && amount > 0 && currentPrice > 0) {
+                const units = (amount / currentPrice).toFixed(4);
+                document.getElementById('est-units').innerText = units;
+            } else {
+                document.getElementById('est-units').innerText = '0.00';
+            }
+        }
+        
+        function selectAsset(id, name, ticker, price) {
+            currentAssetId = id;
+            currentPrice = parseFloat(price);
+            
+            // Update form action
+            document.getElementById('purchaseForm').action = `/buy-asset/${id}/`;
+            
+            // Update display
+            document.getElementById('selectedAssetName').innerText = name;
+            document.getElementById('selectedAssetTicker').innerText = ticker;
+            document.getElementById('selectedAssetIcon').innerText = ticker.charAt(0);
+            document.getElementById('tickerLabel').innerText = ticker;
+            
+            // Recalculate units
+            calculateUnits();
+            
+            // Update chart with new price
+            updateChartPeriod('1W');
+            
+            // Visual feedback - highlight selected card
+            document.querySelectorAll('.asset-card').forEach(card => {
+                card.classList.remove('border-primary', 'bg-primary/5');
+            });
+            const selectedCard = document.querySelector(`.asset-card[data-asset-id="${id}"]`);
+            if (selectedCard) {
+                selectedCard.classList.add('border-primary', 'bg-primary/5');
+            }
+            
+            // Scroll to purchase form on mobile
+            if (window.innerWidth < 1024) {
+                document.getElementById('purchaseForm').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        
+        // Initialize chart on page load
+        document.addEventListener('DOMContentLoaded', initChart);
+    </script>
+{% endblock %}

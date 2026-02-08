@@ -5,7 +5,7 @@
 {% block extra_head %}
 <style>
     .gold-shimmer {
-        background: linear-gradient(135deg, #f2d00d 0%, #d4af37 50%, #f2d00d 100%);
+        background: linear-gradient(135deg, #eca305ff 0%, #eca305ff 50%, #eca305ff 100%);
         background-size: 200% auto;
     }
     .gold-border {
@@ -253,31 +253,7 @@
         </a>
     </div>
     <div class="bg-surface-dark rounded-2xl border border-white/5 p-4 overflow-hidden">
-        <!-- TradingView Widget BEGIN -->
-        <div class="tradingview-widget-container" style="height:400px;">
-            <div id="tradingview_gold" style="height:100%;"></div>
-            <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-            <script type="text/javascript">
-            new TradingView.widget({
-                "autosize": true,
-                "symbol": "TVC:GOLD",
-                "interval": "D",
-                "timezone": "Etc/UTC",
-                "theme": "dark",
-                "style": "2",
-                "locale": "en",
-                "toolbar_bg": "#0a0a0a",
-                "enable_publishing": false,
-                "hide_top_toolbar": true,
-                "hide_legend": false,
-                "save_image": false,
-                "container_id": "tradingview_gold",
-                "backgroundColor": "rgba(10, 10, 10, 1)",
-                "gridColor": "rgba(255, 255, 255, 0.05)"
-            });
-            </script>
-        </div>
-        <!-- TradingView Widget END -->
+        
     </div>
 </section>
 
@@ -384,6 +360,153 @@
     </div>
 </section>
 
+<!-- Gold Visual Showcase -->
+<section class="py-24 bg-white/[0.02] overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16">
+            <h3 class="text-primary font-bold uppercase tracking-[0.2em] text-sm mb-4">Pure Investment</h3>
+            <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight text-text-main-dark">The Timeless Value of Gold</h2>
+            <p class="text-text-sec-dark mt-4 max-w-2xl mx-auto">For centuries, gold has been the ultimate store of value. Join the legacy of smart investors who trust in tangible wealth.</p>
+        </div>
+        <!-- Gold Image Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div class="col-span-2 row-span-2 relative rounded-2xl overflow-hidden group">
+                <img src="{% static 'images/gold2.jpg' %}" 
+                     alt="Gold Bull on Gold Bars" 
+                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 via-transparent to-transparent"></div>
+                <div class="absolute bottom-6 left-6">
+                    <p class="text-primary font-bold uppercase text-xs tracking-widest mb-1">Investment Grade</p>
+                    <h4 class="text-2xl font-bold text-white">99.99% Pure Gold</h4>
+                </div>
+            </div>
+            <div class="relative rounded-2xl overflow-hidden group aspect-square">
+                <img src="{% static 'images/gold1.jpg' %}" 
+                     alt="Gold Coins and Abacus" 
+                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-background-dark/60 to-transparent"></div>
+            </div>
+            <div class="relative rounded-2xl overflow-hidden group aspect-square md:col-span-1 col-span-2">
+                <img src="{% static 'images/gold3.jpg' %}" 
+                     alt="Gold Treasure Chest" 
+                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-background-dark/60 to-transparent"></div>
+            </div>
+        </div>
+        <!-- Trust Badges -->
+        <div class="mt-16 flex flex-wrap items-center justify-center gap-8 md:gap-16">
+            <div class="flex items-center gap-3 text-text-sec-dark">
+                <span class="material-symbols-outlined text-primary text-3xl">verified</span>
+                <span class="font-bold">LBMA Certified</span>
+            </div>
+            <div class="flex items-center gap-3 text-text-sec-dark">
+                <span class="material-symbols-outlined text-primary text-3xl">security</span>
+                <span class="font-bold">Fully Insured</span>
+            </div>
+            <div class="flex items-center gap-3 text-text-sec-dark">
+                <span class="material-symbols-outlined text-primary text-3xl">account_balance</span>
+                <span class="font-bold">Global Vaults</span>
+            </div>
+            <div class="flex items-center gap-3 text-text-sec-dark">
+                <span class="material-symbols-outlined text-primary text-3xl">schedule</span>
+                <span class="font-bold">24/7 Trading</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="max-w-7xl mx-auto px-6 py-24">
+    <div class="text-center mb-16">
+        <h3 class="text-primary font-bold uppercase tracking-[0.2em] text-sm mb-4">Investor Stories</h3>
+        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight text-text-main-dark">Trusted by Thousands</h2>
+        <p class="text-text-sec-dark mt-4 max-w-2xl mx-auto">Hear from investors who have secured their wealth with Avalanch Metal's premium gold investment solutions.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+        <!-- Testimonial 1 -->
+        <div class="bg-surface-dark rounded-2xl p-8 border border-white/5 relative">
+            <div class="absolute top-6 right-6 text-primary/20">
+                <span class="material-symbols-outlined text-6xl">format_quote</span>
+            </div>
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-14 h-14 rounded-full overflow-hidden border-2 border-primary">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80" 
+                         alt="Michael Chen" 
+                         class="w-full h-full object-cover">
+                </div>
+                <div>
+                    <h4 class="font-bold text-text-main-dark">Michael Chen</h4>
+                    <p class="text-sm text-text-sec-dark">Tech Entrepreneur, Singapore</p>
+                </div>
+            </div>
+            <div class="flex gap-1 mb-4">
+                <span class="material-symbols-outlined text-primary text-lg">star</span>
+                <span class="material-symbols-outlined text-primary text-lg">star</span>
+                <span class="material-symbols-outlined text-primary text-lg">star</span>
+                <span class="material-symbols-outlined text-primary text-lg">star</span>
+                <span class="material-symbols-outlined text-primary text-lg">star</span>
+            </div>
+            <p class="text-text-sec-dark leading-relaxed relative z-10">
+                "Avalanch Metal made diversifying into gold seamless. The platform is intuitive, and knowing my assets are stored in insured vaults gives me complete peace of mind. My portfolio is up 34% since I started."
+            </p>
+        </div>
+        <!-- Testimonial 2 -->
+        <div class="bg-surface-dark rounded-2xl p-8 border border-white/5 relative">
+            <div class="absolute top-6 right-6 text-primary/20">
+                <span class="material-symbols-outlined text-6xl">format_quote</span>
+            </div>
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-14 h-14 rounded-full overflow-hidden border-2 border-primary">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80" 
+                         alt="Sarah Williams" 
+                         class="w-full h-full object-cover">
+                </div>
+                <div>
+                    <h4 class="font-bold text-text-main-dark">Sarah Williams</h4>
+                    <p class="text-sm text-text-sec-dark">Financial Advisor, London</p>
+                </div>
+            </div>
+            <div class="flex gap-1 mb-4">
+                <span class="material-symbols-outlined text-primary text-lg">star</span>
+                <span class="material-symbols-outlined text-primary text-lg">star</span>
+                <span class="material-symbols-outlined text-primary text-lg">star</span>
+                <span class="material-symbols-outlined text-primary text-lg">star</span>
+                <span class="material-symbols-outlined text-primary text-lg">star</span>
+            </div>
+            <p class="text-text-sec-dark leading-relaxed relative z-10">
+                "I recommend Avalanch Metal to all my high-net-worth clients. The transparency, security, and ease of trading physical gold digitally is unmatched. Their customer service is exceptional."
+            </p>
+        </div>
+        <!-- Testimonial 3 -->
+        <div class="bg-surface-dark rounded-2xl p-8 border border-white/5 relative">
+            <div class="absolute top-6 right-6 text-primary/20">
+                <span class="material-symbols-outlined text-6xl">format_quote</span>
+            </div>
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-14 h-14 rounded-full overflow-hidden border-2 border-primary">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&q=80" 
+                         alt="David Okonkwo" 
+                         class="w-full h-full object-cover">
+                </div>
+                <div>
+                    <h4 class="font-bold text-text-main-dark">David Okonkwo</h4>
+                    <p class="text-sm text-text-sec-dark">Business Owner, Lagos</p>
+                </div>
+            </div>
+            <div class="flex gap-1 mb-4">
+                <span class="material-symbols-outlined text-primary text-lg">star</span>
+                <span class="material-symbols-outlined text-primary text-lg">star</span>
+                <span class="material-symbols-outlined text-primary text-lg">star</span>
+                <span class="material-symbols-outlined text-primary text-lg">star</span>
+                <span class="material-symbols-outlined text-primary text-lg">star_half</span>
+            </div>
+            <p class="text-text-sec-dark leading-relaxed relative z-10">
+                "In uncertain economic times, gold has been my safe haven. Avalanch Metal's platform allows me to buy and sell instantly. I've even taken physical delivery of gold bars to my home."
+            </p>
+        </div>
+    </div>
+</section>
+
 <!-- FAQ Section -->
 <section class="max-w-4xl mx-auto px-6 py-24">
     <div class="text-center mb-12">
@@ -425,6 +548,24 @@
             </summary>
             <div class="px-6 pb-6 text-text-sec-dark leading-relaxed">
                 AM (Avalanch Metal) Tokens are digital representations of physical gold. Each token is backed 1:1 by real gold in our vaults, allowing you to trade 24/7.
+            </div>
+        </details>
+        <details class="group bg-surface-dark rounded-2xl border border-white/5 overflow-hidden hover:border-primary/30 transition-colors">
+            <summary class="flex items-center justify-between p-6 cursor-pointer text-lg font-bold text-text-main-dark">
+                What are the fees for investing?
+                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-primary">expand_more</span>
+            </summary>
+            <div class="px-6 pb-6 text-text-sec-dark leading-relaxed">
+                We charge a transparent 0.5% transaction fee on buys and sells. Storage is free for the first year, then just 0.12% annually. No hidden fees, ever.
+            </div>
+        </details>
+        <details class="group bg-surface-dark rounded-2xl border border-white/5 overflow-hidden hover:border-primary/30 transition-colors">
+            <summary class="flex items-center justify-between p-6 cursor-pointer text-lg font-bold text-text-main-dark">
+                How is my investment secured?
+                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-primary">expand_more</span>
+            </summary>
+            <div class="px-6 pb-6 text-text-sec-dark leading-relaxed">
+                Your gold is fully insured up to $500M by Lloyd's of London. We use bank-grade encryption, 2FA authentication, and cold storage for digital assets. All holdings are audited quarterly by independent auditors.
             </div>
         </details>
     </div>

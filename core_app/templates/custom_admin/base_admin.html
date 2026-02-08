@@ -85,13 +85,9 @@
         <aside id="sidebar" class="sidebar-panel fixed left-0 top-0 h-full w-64 bg-admin-sidebar border-r border-admin-border flex flex-col z-50 md:translate-x-0 md:transform-none">
             <!-- Logo -->
             <div class="p-6 border-b border-admin-border flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                    <span class="material-symbols-outlined text-primary text-3xl">water_drop</span>
-                    <div>
-                        <h1 class="text-lg font-bold">Techo Drill</h1>
-                        <p class="text-xs text-gray-500">Admin Panel</p>
-                    </div>
-                </div>
+                <a href="{% url 'home' %}" class="flex items-center gap-3">
+                    <img src="{% static 'images/logo.png' %}" alt="Avalanch Metal" class="h-16 w-auto">
+                </a>
                 <!-- Close button for mobile -->
                 <button onclick="toggleSidebar()" class="md:hidden p-2 hover:bg-white/10 rounded-lg">
                     <span class="material-symbols-outlined">close</span>

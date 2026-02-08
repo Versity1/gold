@@ -33,7 +33,7 @@
     <meta name="twitter:image" content="{% static 'images/gold_bars.jpg' %}">
     
     <!-- Additional SEO -->
-    <meta name="theme-color" content="#D4AF37">
+    <meta name="theme-color" content="#eca305ff">
     <link rel="canonical" href="{% block canonical_url %}https://tethodrill.com/{% endblock %}">
     
     <!-- Fonts - Manrope for premium feeling -->
@@ -50,8 +50,8 @@
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#f2d00d",
-                        "primary-dark": "#d4af37",
+                        "primary": "#eca305ff",
+                        "primary-dark": "#eca305ff",
                         "background-light": "#0a0a0a",
                         "background-dark": "#0a0a0a",
                         "surface-light": "#161616",
@@ -61,8 +61,8 @@
                         "text-main-dark": "#F5F5F5",
                         "text-sec-light": "#94a3b8",
                         "text-sec-dark": "#94a3b8",
-                        "gold": "#d4af37",
-                        "gold-accent": "#d4af37",
+                        "gold": "#eca305ff",
+                        "gold-accent": "#eca305ff",
                     },
                     fontFamily: {
                         "display": ["Manrope", "sans-serif"],
@@ -78,39 +78,25 @@
         }
     </script>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <!-- Smartsupp Live Chat script -->
-<script type="text/javascript">
-var _smartsupp = _smartsupp || {};
-_smartsupp.key = 'bc84a48ec1826210880f0fa5cb390c4218668da6';
-window.smartsupp||(function(d) {
-  var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
-  s=d.getElementsByTagName('script')[0];c=d.createElement('script');
-  c.type='text/javascript';c.charset='utf-8';c.async=true;
-  c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
-})(document);
-</script>
-<noscript> Powered by <a href=“https://www.smartsupp.com” target=“_blank”>Smartsupp</a></noscript>
+    
     {% block extra_head %}{% endblock %}
 </head>
 <body class="bg-background-dark font-display text-text-main-dark antialiased">
     <!-- Header -->
     <header class="fixed top-0 w-full z-50 bg-background-dark/80 backdrop-blur-xl border-b border-white/5 px-6 h-20 flex justify-between items-center">
-        <div class="flex items-center gap-12">
-            <a href="{% url 'home' %}" class="flex items-center gap-3">
-                <div class="size-10 bg-primary rounded-lg flex items-center justify-center text-background-dark shadow-[0_0_20px_rgba(242,208,13,0.3)]">
-                    <span class="material-symbols-outlined font-bold">payments</span>
-                </div>
-                <h1 class="text-xl font-extrabold tracking-tight uppercase">Avalanch<span class="text-primary">Metal</span></h1>
-            </a>
-            <!-- Desktop Navigation -->
-            <nav class="hidden md:flex items-center gap-8">
-                <a href="{% url 'home' %}" class="text-sm font-semibold hover:text-primary transition-colors">Home</a>
-                <a href="{% url 'about' %}" class="text-sm font-semibold hover:text-primary transition-colors">About</a>
-                <a href="{% url 'services' %}" class="text-sm font-semibold hover:text-primary transition-colors">Vaults</a>
-                <a href="{% url 'investment_plan' %}" class="text-sm font-semibold hover:text-primary transition-colors">Market</a>
-                <a href="{% url 'contact' %}" class="text-sm font-semibold hover:text-primary transition-colors">Contact</a>
-            </nav>
-        </div>
+        <!-- Logo -->
+        <a href="{% url 'home' %}" class="flex items-center gap-3">
+            <img src="{% static 'images/logo.png' %}" alt="Avalanch Metal" class="h-12 w-auto">
+        </a>
+        
+        <!-- Desktop Navigation (Center) -->
+        <nav class="hidden md:flex items-center gap-8">
+            <a href="{% url 'home' %}" class="text-sm font-semibold hover:text-primary transition-colors">Home</a>
+            <a href="{% url 'about' %}" class="text-sm font-semibold hover:text-primary transition-colors">About</a>
+            <a href="{% url 'services' %}" class="text-sm font-semibold hover:text-primary transition-colors">Vaults</a>
+            <a href="{% url 'investment_plan' %}" class="text-sm font-semibold hover:text-primary transition-colors">Market</a>
+            <a href="{% url 'contact' %}" class="text-sm font-semibold hover:text-primary transition-colors">Contact</a>
+        </nav>
 
         <div class="flex items-center gap-2">
             <!-- Notification Dropdown -->
@@ -148,7 +134,7 @@ window.smartsupp||(function(d) {
                 <button class="hidden md:flex px-5 py-2 text-sm font-bold border border-white/10 rounded-lg hover:bg-white/5 transition-all">
                     <a href="{% url 'login' %}">Login</a>
                 </button>
-                <a href="{% url 'register' %}" class="hidden md:flex px-6 py-2 text-sm font-extrabold text-background-dark rounded-lg shadow-lg hover:shadow-primary/20 transition-all" style="background: linear-gradient(135deg, #f2d00d 0%, #d4af37 50%, #f2d00d 100%);">
+                <a href="{% url 'register' %}" class="hidden md:flex px-6 py-2 text-sm font-extrabold text-background-dark rounded-lg shadow-lg hover:shadow-primary/20 transition-all" style="background: linear-gradient(135deg, #eca305ff 0%, #eca305ff 50%, #eca305ff 100%);">
                     Open Account
                 </a>
             {% endif %}
@@ -223,10 +209,7 @@ window.smartsupp||(function(d) {
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
             <div class="space-y-6">
                 <div class="flex items-center gap-3">
-                    <div class="size-8 bg-primary rounded flex items-center justify-center text-background-dark">
-                        <span class="material-symbols-outlined font-bold text-sm">payments</span>
-                    </div>
-                    <h2 class="text-lg font-extrabold tracking-tight uppercase">Avalanch Metal</h2>
+                    <img src="{% static 'images/logo.png' %}" alt="Avalanch Metal" class="h-14 w-auto">
                 </div>
                 <p class="text-sm text-text-sec-dark leading-relaxed">Licensed and regulated precious metals investment platform. Secure your wealth with physical assets.</p>
             </div>

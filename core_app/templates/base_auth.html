@@ -23,8 +23,8 @@
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#f2d00d",
-                        "primary-dark": "#d4af37",
+                        "primary": "#eca305ff",
+                        "primary-dark": "#eca305ff",
                         "background-dark": "#0a0a0a",
                         "card-dark": "#161616",
                         "surface-dark": "#1a1a1a",
@@ -39,7 +39,7 @@
     </script>
     <style>
         .gold-shimmer {
-            background: linear-gradient(135deg, #f2d00d 0%, #d4af37 50%, #f2d00d 100%);
+            background: linear-gradient(135deg, #eca305ff 0%, #eca305ff 50%, #eca305ff 100%);
             background-size: 200% auto;
         }
         .glass-card {
@@ -47,18 +47,7 @@
             backdrop-filter: blur(20px);
         }
     </style>
-    <!-- Smartsupp Live Chat script -->
-<script type="text/javascript">
-var _smartsupp = _smartsupp || {};
-_smartsupp.key = 'bc84a48ec1826210880f0fa5cb390c4218668da6';
-window.smartsupp||(function(d) {
-  var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
-  s=d.getElementsByTagName('script')[0];c=d.createElement('script');
-  c.type='text/javascript';c.charset='utf-8';c.async=true;
-  c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
-})(document);
-</script>
-<noscript> Powered by <a href="https://www.smartsupp.com" target="_blank">Smartsupp</a></noscript>
+    
 </head>
 <body class="bg-background-dark text-white font-display min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden">
     <!-- Background Effects -->
@@ -69,10 +58,7 @@ window.smartsupp||(function(d) {
     
     <!-- Logo -->
     <a href="{% url 'home' %}" class="flex items-center gap-3 mb-8 relative z-10">
-        <div class="size-12 bg-primary rounded-xl flex items-center justify-center text-background-dark shadow-[0_0_30px_rgba(242,208,13,0.3)]">
-            <span class="material-symbols-outlined font-bold text-2xl">payments</span>
-        </div>
-        <h1 class="text-2xl font-extrabold tracking-tight uppercase">Gold<span class="text-primary">Invest</span></h1>
+        <img src="{% static 'images/logo.png' %}" alt="Avalanch Metal" class="h-24 w-auto">
     </a>
     
     <!-- Content -->

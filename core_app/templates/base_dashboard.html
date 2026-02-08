@@ -8,7 +8,7 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
     <link rel="apple-touch-icon" href="{% static 'images/favicon.png' %}">
-    <meta name="theme-color" content="#f2d00d">
+    <meta name="theme-color" content="#eca305ff">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -24,8 +24,8 @@
         theme: {
           extend: {
             colors: {
-              "primary": "#f2d00d",
-              "primary-dark": "#d4af37",
+              "primary": "#eca305ff",
+              "primary-dark": "#eca305ff",
               "background-dark": "#0a0a0a",
               "card-dark": "#161613",
               "surface-dark": "#1a1a18",
@@ -44,27 +44,16 @@
         body { font-family: 'Manrope', sans-serif; }
         .gold-glow { text-shadow: 0 0 20px rgba(244, 209, 37, 0.4); }
         .gold-border { border: 1px solid rgba(244, 209, 37, 0.3); }
-        .gold-border:hover { border-color: #f2d00d; }
+        .gold-border:hover { border-color: #eca305ff; }
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         .gold-shimmer {
-            background: linear-gradient(135deg, #f2d00d 0%, #d4af37 50%, #f2d00d 100%);
+            background: linear-gradient(135deg, #eca305ff 0%, #eca305ff 50%, #eca305ff 100%);
             background-size: 200% auto;
         }
     </style>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <!-- Smartsupp Live Chat script -->
-<script type="text/javascript">
-var _smartsupp = _smartsupp || {};
-_smartsupp.key = 'bc84a48ec1826210880f0fa5cb390c4218668da6';
-window.smartsupp||(function(d) {
-  var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
-  s=d.getElementsByTagName('script')[0];c=d.createElement('script');
-  c.type='text/javascript';c.charset='utf-8';c.async=true;
-  c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
-})(document);
-</script>
-<noscript> Powered by <a href="https://www.smartsupp.com" target="_blank">Smartsupp</a></noscript>
+    
 
 </head>
 <body class="bg-background-dark text-text-main-dark font-display">
@@ -72,12 +61,9 @@ window.smartsupp||(function(d) {
     <header class="fixed top-0 left-0 right-0 z-50 bg-background-dark/80 backdrop-blur-md border-b border-white/10">
         <div class="flex items-center justify-between px-4 md:px-6 py-3">
             <div class="flex items-center gap-4 md:gap-8">
-                <div class="flex items-center gap-3">
-                    <div class="bg-primary p-1.5 rounded-lg">
-                        <span class="material-symbols-outlined text-background-dark font-bold">payments</span>
-                    </div>
-                    <h1 class="text-lg md:text-xl font-extrabold tracking-tight text-white uppercase italic">Avalanch<span class="text-primary not-italic">Metal</span></h1>
-                </div>
+                <a href="{% url 'home' %}" class="flex items-center gap-3">
+                    <img src="{% static 'images/logo.png' %}" alt="Avalanch Metal" class="h-16 w-auto">
+                </a>
                 <!-- Spot Price Ticker -->
                 <div class="hidden lg:flex items-center gap-6 overflow-hidden max-w-2xl whitespace-nowrap border-l border-white/10 pl-8">
                     <div class="flex items-center gap-2">

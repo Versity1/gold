@@ -1,629 +1,451 @@
 {% extends 'base_front.html' %}
 {% load static %}
+{% block title %}Avalanch Metal | Premium Gold Investment Platform{% endblock %}
 
-{% block title %}Gold Investment Broker - Home{% endblock %}
+{% block extra_head %}
+<style>
+    .gold-shimmer {
+        background: linear-gradient(135deg, #f2d00d 0%, #d4af37 50%, #f2d00d 100%);
+        background-size: 200% auto;
+    }
+    .gold-border {
+        border: 1px solid rgba(242, 208, 13, 0.3);
+    }
+    @keyframes marquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+    .animate-marquee {
+        animation: marquee 30s linear infinite;
+    }
+    @keyframes pulse-glow {
+        0%, 100% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
+        50% { box-shadow: 0 0 40px rgba(212, 175, 55, 0.5); }
+    }
+    .pulse-glow {
+        animation: pulse-glow 2s ease-in-out infinite;
+    }
+</style>
+{% endblock %}
 
 {% block content %}
-    <!-- Live Market Ticker -->
-    <div class="bg-black text-white py-2 overflow-hidden border-b border-gray-800">
-        <div class="flex items-center gap-8 animate-marquee whitespace-nowrap">
-            <span class="flex items-center gap-2 text-xs font-mono"><span class="text-green-400">▲</span> GOLD (XAU/USD) <span class="font-bold text-primary">$2,045.30</span></span>
-            <span class="flex items-center gap-2 text-xs font-mono"><span class="text-green-400">▲</span> SILVER (XAG/USD) <span class="font-bold">$24.85</span></span>
-            <span class="flex items-center gap-2 text-xs font-mono"><span class="text-red-400">▼</span> PLATINUM <span class="font-bold">$1,012.50</span></span>
-            <span class="flex items-center gap-2 text-xs font-mono"><span class="text-green-400">▲</span> PALLADIUM <span class="font-bold">$1,145.00</span></span>
-            <span class="flex items-center gap-2 text-xs font-mono"><span class="text-green-400">▲</span> BITCOIN <span class="font-bold">$42,350.00</span></span>
-            <span class="flex items-center gap-2 text-xs font-mono"><span class="text-green-400">▲</span> GIB TOKENS <span class="font-bold text-primary">$42.85</span></span>
-            <!-- Duplicate for loop -->
-            <span class="flex items-center gap-2 text-xs font-mono"><span class="text-green-400">▲</span> GOLD (XAU/USD) <span class="font-bold text-primary">$2,045.30</span></span>
-            <span class="flex items-center gap-2 text-xs font-mono"><span class="text-green-400">▲</span> SILVER (XAG/USD) <span class="font-bold">$24.85</span></span>
-            <span class="flex items-center gap-2 text-xs font-mono"><span class="text-red-400">▼</span> PLATINUM <span class="font-bold">$1,012.50</span></span>
-            <span class="flex items-center gap-2 text-xs font-mono"><span class="text-green-400">▲</span> PALLADIUM <span class="font-bold">$1,145.00</span></span>
-            <span class="flex items-center gap-2 text-xs font-mono"><span class="text-green-400">▲</span> BITCOIN <span class="font-bold">$42,350.00</span></span>
-        </div>
+<!-- Hero Section -->
+<section class="relative min-h-[85vh] flex items-center overflow-hidden px-6">
+    <div class="absolute inset-0 z-0">
+        <div class="absolute inset-0 bg-gradient-to-r from-background-dark via-background-dark/90 to-transparent z-10"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-background-dark z-[5]"></div>
+        <img alt="Gold bars with dramatic lighting" class="w-full h-full object-cover opacity-60" 
+             src="https://images.unsplash.com/photo-1610375461246-83df859d849d?w=1920&q=80"/>
     </div>
-
-    <!-- Hero Section -->
-    <section class="relative h-[600px] md:h-[700px] flex items-center overflow-hidden">
-        <!-- Background with gold gradient -->
-        <div class="absolute inset-0 z-0">
-            <div class="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-primary/20 z-10"></div>
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black z-10"></div>
-            <div class="w-full h-full bg-gradient-to-br from-gray-900 via-black to-primary/30"></div>
-        </div>
-
-        <div class="container mx-auto px-4 md:px-8 relative z-20">
-            <div class="max-w-3xl">
-                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 backdrop-blur-md border border-primary/40 mb-6 animate-fade-in-up">
-                    <span class="relative flex h-3 w-3">
-                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                      <span class="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
-                    </span>
-                    <span class="text-sm font-medium text-primary tracking-wide">Premium Gold Investments</span>
-                </div>
-                
-                <h1 class="text-5xl md:text-7xl font-bold text-white leading-tight mb-6 animate-fade-in-up delay-100">
-                    Invest in <br/>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-yellow-300">Timeless Value.</span>
-                </h1>
-                
-                <p class="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl leading-relaxed animate-fade-in-up delay-200">
-                    Secure your wealth with physical gold investments. Buy, sell, and trade precious metals with confidence through our secure platform.
-                </p>
-                
-                <div class="flex flex-col sm:flex-row gap-4 animate-fade-in-up delay-300">
-                    <a href="{% url 'investment_plan' %}" class="bg-primary hover:bg-primary-dark text-black font-bold py-4 px-8 rounded-xl shadow-lg shadow-primary/30 transition-all hover:scale-105 flex items-center justify-center gap-2">
-                        Start Investing
-                        <span class="material-symbols-outlined">trending_up</span>
-                    </a>
-                    <a href="{% url 'about' %}" class="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white font-bold py-4 px-8 rounded-xl transition-all flex items-center justify-center gap-2 group">
-                        Learn About Gold
-                        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
-                    </a>
-                </div>
+    <div class="relative z-20 max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 items-center">
+        <div class="space-y-8">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs font-bold uppercase tracking-widest text-primary pulse-glow">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                </span>
+                Market Live: XAU/USD $2,345.60
             </div>
-        </div>
-        
-        <!-- Quick Stats Widget -->
-        <div class="absolute bottom-0 right-0 p-8 hidden lg:block z-20 animate-fade-in-left delay-500">
-            <div class="bg-black/80 backdrop-blur-xl p-6 rounded-2xl border border-primary/30 shadow-2xl max-w-xs">
-                <div class="flex items-center gap-4 mb-4">
-                    <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
-                         <span class="material-symbols-outlined text-primary">diamond</span>
-                    </div>
-                    <div>
-                        <p class="text-xs text-gray-400 uppercase tracking-wider">Gold Stored</p>
-                        <p class="text-xl font-bold text-white">2.4M Oz</p>
-                    </div>
-                </div>
-                 <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
-                         <span class="material-symbols-outlined text-primary">monitoring</span>
-                    </div>
-                    <div>
-                        <p class="text-xs text-gray-400 uppercase tracking-wider">Daily Trading</p>
-                        <p class="text-xl font-bold text-white">$450M+</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Partners Section -->
-    <section class="py-8 bg-surface-light border-b border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <p class="text-xs uppercase tracking-widest text-text-sec-light mb-6">Trusted by Leading Institutions</p>
-            <div class="flex flex-wrap justify-center items-center gap-x-12 gap-y-6 opacity-80">
-                <span class="text-lg font-semibold text-text-sec-light">GoldCore</span>
-                <span class="text-lg font-semibold text-text-sec-light">Swiss Vault</span>
-                <span class="text-lg font-semibold text-text-sec-light">Bullion Capital</span>
-                <span class="text-lg font-semibold text-text-sec-light">MetalStream</span>
-                <span class="text-lg font-semibold text-text-sec-light">PreciousFirst</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats Counter -->
-    <section class="py-12 px-4 md:px-8 bg-gradient-to-b from-surface-light to-black border-b border-gray-800">
-        <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            <div class="p-6 bg-surface-light rounded-xl border border-gray-700 hover:border-primary/50 transition-colors">
-                <span class="material-symbols-outlined text-primary text-4xl mb-2">diamond</span>
-                <p class="text-3xl md:text-4xl font-bold text-text-main-light animate-[countUp_3s_ease-out]" data-target="2450000">2.45M</p>
-                <p class="text-sm text-text-sec-light mt-1">Ounces Stored</p>
-            </div>
-            <div class="p-6 bg-surface-light rounded-xl border border-gray-700 hover:border-primary/50 transition-colors">
-                <span class="material-symbols-outlined text-primary text-4xl mb-2">groups</span>
-                <p class="text-3xl md:text-4xl font-bold text-text-main-light" data-target="50750">50,750+</p>
-                <p class="text-sm text-text-sec-light mt-1">Active Investors</p>
-            </div>
-            <div class="p-6 bg-surface-light rounded-xl border border-gray-700 hover:border-primary/50 transition-colors">
-                <span class="material-symbols-outlined text-primary text-4xl mb-2">lock</span>
-                <p class="text-3xl md:text-4xl font-bold text-text-main-light" data-target="18">18</p>
-                <p class="text-sm text-text-sec-light mt-1">Secure Vaults</p>
-            </div>
-            <div class="p-6 bg-surface-light rounded-xl border border-gray-700 hover:border-primary/50 transition-colors">
-                <span class="material-symbols-outlined text-primary text-4xl mb-2">star</span>
-                <p class="text-3xl md:text-4xl font-bold text-text-main-light" data-target="98.5">98.5%</p>
-                <p class="text-sm text-text-sec-light mt-1">Client Satisfaction</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Real-Time Forex Chart (TradingView) -->
-    <section class="py-12 bg-gray-50 dark:bg-surface-dark/30 border-y border-gray-100 dark:border-gray-800">
-        <div class="container mx-auto px-4 md:px-8">
-            <div class="text-center mb-8">
-                <span class="text-primary font-bold text-sm tracking-wider uppercase mb-2 block">Live Market Data</span>
-                <h2 class="text-3xl font-bold text-text-main-light">Gold Price Chart</h2>
-            </div>
-            <div class="h-[500px] rounded-2xl overflow-hidden shadow-lg border border-gray-700">
-                <!-- TradingView Widget BEGIN -->
-                <div class="tradingview-widget-container" style="height:100%;width:100%">
-                    <div class="tradingview-widget-container__widget" style="height:100%;width:100%"></div>
-                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-                    {
-                    "autosize": true,
-                    "symbol": "TVC:GOLD",
-                    "interval": "D",
-                    "timezone": "Etc/UTC",
-                    "theme": "dark",
-                    "style": "1",
-                    "locale": "en",
-                    "enable_publishing": false,
-                    "allow_symbol_change": true,
-                    "calendar": false,
-                    "support_host": "https://www.tradingview.com"
-                    }
-                    </script>
-                </div>
-                <!-- TradingView Widget END -->
-            </div>
-        </div>
-    </section>
-
-    <!-- About Teaser -->
-    <section class="py-16 md:py-24 px-4 md:px-8 overflow-hidden">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
-            <div class="w-full md:w-1/2 relative group">
-                <div class="absolute -inset-4 bg-gradient-to-r from-primary to-yellow-400 rounded-3xl opacity-20 blur-xl group-hover:opacity-30 transition-opacity"></div>
-                <div class="relative rounded-2xl overflow-hidden shadow-2xl transition-transform duration-500 hover:-translate-y-2 bg-gradient-to-br from-primary/20 via-black to-primary/10 h-80 flex items-center justify-center">
-                     <span class="material-symbols-outlined text-primary text-9xl opacity-40">verified</span>
-                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                </div>
-                <!-- Floating Card -->
-                <div class="absolute -bottom-10 -right-10 bg-surface-light p-6 rounded-2xl shadow-xl border border-gray-700 max-w-[220px] animate-float z-10 hidden md:block">
-                    <div class="flex items-center gap-3 mb-3">
-                         <span class="w-3 h-3 rounded-full bg-green-500"></span>
-                         <span class="text-xs font-bold uppercase text-gray-400">Vault Status</span>
-                    </div>
-                    <p class="text-lg font-bold text-white mb-1">Secure</p>
-                    <p class="text-xs text-gray-500">All gold assets stored in LBMA-certified vaults.</p>
-                </div>
-            </div>
-            <div class="w-full md:w-1/2">
-                <span class="text-primary font-bold text-sm tracking-wider uppercase mb-2 block">Who We Are</span>
-                <h2 class="text-3xl md:text-5xl font-bold text-text-main-light mb-6 leading-tight">Trusted Gold Investment Partner.</h2>
-                <p class="text-lg text-text-sec-light mb-6 leading-relaxed">
-                    Gold Investment Broker offers secure, transparent access to physical gold investments. Our platform combines institutional-grade security with competitive pricing, enabling investors worldwide to build lasting wealth through precious metals.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="{% url 'about' %}" class="bg-surface-light border-2 border-primary text-primary hover:bg-primary hover:text-black font-bold py-3 px-8 rounded-lg transition-all flex items-center justify-center gap-2 shadow-md hover:shadow-lg">
-                        Our Story
-                    </a>
-                    <a href="{% url 'services' %}" class="flex items-center justify-center gap-2 text-text-main-light font-bold hover:text-primary transition-colors px-4 py-3">
-                        View Services <span class="material-symbols-outlined">arrow_forward</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Global Vault Locations -->
-    <section class="py-20 px-4 md:px-8 bg-black text-white relative overflow-hidden">
-        <div class="absolute inset-0 bg-[url('https://upload.wikimedia.org/wikipedia/commons/e/ec/World_map_blank_without_borders.svg')] bg-no-repeat bg-center bg-contain opacity-5"></div>
-        <div class="max-w-7xl mx-auto relative z-10 text-center">
-            <span class="text-primary font-bold text-sm tracking-wider uppercase mb-2 block">Global Presence</span>
-            <h2 class="text-3xl md:text-5xl font-bold mb-12">Secure Vault Locations</h2>
-            
-            <div class="relative w-full max-w-4xl mx-auto h-[300px] md:h-[500px] rounded-2xl bg-white/5 border border-primary/20 backdrop-blur-sm p-8 flex items-center justify-center">
-                <p class="text-gray-400">LBMA-Certified Global Storage Network</p>
-                <!-- Vault Hotspots -->
-                <div class="absolute top-[25%] left-[15%] w-4 h-4 bg-primary rounded-full animate-ping"></div>
-                <div class="absolute top-[25%] left-[15%] w-4 h-4 bg-primary rounded-full"></div>
-                <span class="absolute top-[20%] left-[17%] text-xs text-primary font-bold">London</span>
-                
-                <div class="absolute top-[30%] right-[25%] w-4 h-4 bg-primary rounded-full animate-ping delay-300"></div>
-                <div class="absolute top-[30%] right-[25%] w-4 h-4 bg-primary rounded-full"></div>
-                <span class="absolute top-[25%] right-[20%] text-xs text-primary font-bold">Zurich</span>
-                
-                <div class="absolute bottom-[35%] left-[45%] w-4 h-4 bg-primary rounded-full animate-ping delay-700"></div>
-                <div class="absolute bottom-[35%] left-[45%] w-4 h-4 bg-primary rounded-full"></div>
-                <span class="absolute bottom-[30%] left-[47%] text-xs text-primary font-bold">Singapore</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Newsletter Section -->
-    <section class="py-16 bg-surface-light border-t border-gray-800">
-        <div class="max-w-4xl mx-auto px-4 text-center">
-            <span class="material-symbols-outlined text-5xl text-primary mb-4">mark_email_unread</span>
-            <h2 class="text-3xl font-bold mb-4 text-text-main-light">Gold Market Insights, Delivered.</h2>
-            <p class="text-gray-500 mb-8 max-w-lg mx-auto">Get weekly analysis on gold prices, precious metals trends, and investment opportunities directly to your inbox.</p>
-            
-            <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                <input type="email" placeholder="Enter your email address" class="flex-1 px-6 py-4 rounded-xl bg-black border border-gray-700 focus:ring-2 focus:ring-primary outline-none transition-all text-white" />
-                <button type="button" class="bg-primary hover:bg-primary-dark text-black font-bold py-4 px-8 rounded-xl shadow-lg transition-all transform hover:scale-105">
-                    Subscribe
-                </button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Services Carousel -->
-    <section class="py-12 md:py-16 px-4 md:px-8">
-        <div class="flex items-center justify-between mb-8">
-            <h3 class="text-2xl md:text-3xl font-bold text-text-main-light">Core Services</h3>
-            <a class="text-primary text-sm font-medium hover:underline flex items-center gap-1" href="{% url 'services' %}">
-                View All <span class="material-symbols-outlined text-sm">chevron_right</span>
-            </a>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Card 1: Physical Gold -->
-            <div class="bg-surface-light p-6 rounded-xl border border-gray-700 shadow-sm flex flex-col gap-4 hover:border-primary/50 transition-colors">
-                <div class="w-14 h-14 rounded-xl bg-primary/20 flex items-center justify-center text-primary">
-                    <span class="material-symbols-outlined text-2xl">diamond</span>
-                </div>
-                <div>
-                    <h4 class="font-bold text-xl mb-2 text-text-main-light">Physical Gold Trading</h4>
-                    <p class="text-text-sec-light">Buy and sell certified gold bars and coins with competitive spreads and instant settlement.</p>
-                </div>
-            </div>
-            <!-- Card 2: Market Analysis -->
-            <div class="bg-surface-light p-6 rounded-xl border border-gray-700 shadow-sm flex flex-col gap-4 hover:border-primary/50 transition-colors">
-                <div class="w-14 h-14 rounded-xl bg-primary/20 flex items-center justify-center text-primary">
-                    <span class="material-symbols-outlined text-2xl">analytics</span>
-                </div>
-                <div>
-                    <h4 class="font-bold text-xl mb-2 text-text-main-light">Market Intelligence</h4>
-                    <p class="text-text-sec-light">Real-time market data and expert analysis to inform your investment decisions.</p>
-                </div>
-            </div>
-            <!-- Card 3: Secure Storage -->
-            <div class="bg-surface-light p-6 rounded-xl border border-gray-700 shadow-sm flex flex-col gap-4 hover:border-primary/50 transition-colors">
-                <div class="w-14 h-14 rounded-xl bg-primary/20 flex items-center justify-center text-primary">
-                    <span class="material-symbols-outlined text-2xl">lock</span>
-                </div>
-                <div>
-                    <h4 class="font-bold text-xl mb-2 text-text-main-light">Secure Storage</h4>
-                    <p class="text-text-sec-light">Store your gold in LBMA-certified vaults with full insurance and 24/7 security.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gold Storage Showcase -->
-    <section class="py-16 md:py-24 px-4 md:px-8 bg-black text-white">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-12">
-                <span class="text-primary font-bold text-sm tracking-wider uppercase mb-2 block">Our Vaults</span>
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">World-Class Gold Storage</h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">LBMA-certified vaults across three continents with 24/7 security, full insurance, and real-time asset tracking.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Vault 1 -->
-                <div class="group relative overflow-hidden rounded-2xl h-80 cursor-pointer bg-gradient-to-br from-primary/10 via-black to-primary/5 border border-primary/20">
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <span class="material-symbols-outlined text-primary text-8xl opacity-30">lock</span>
-                    </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-                    <div class="absolute bottom-0 left-0 right-0 p-6 transform group-hover:-translate-y-2 transition-transform duration-300">
-                        <span class="inline-block px-3 py-1 bg-primary/80 text-black text-xs font-bold rounded-full mb-3">London</span>
-                        <h3 class="text-xl font-bold mb-2">UK Gold Vault</h3>
-                        <p class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">200,000 oz capacity in the heart of London's financial district. Allocated and segregated storage.</p>
-                    </div>
-                </div>
-                
-                <!-- Vault 2 -->
-                <div class="group relative overflow-hidden rounded-2xl h-80 cursor-pointer bg-gradient-to-br from-primary/10 via-black to-primary/5 border border-primary/20">
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <span class="material-symbols-outlined text-primary text-8xl opacity-30">verified_user</span>
-                    </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-                    <div class="absolute bottom-0 left-0 right-0 p-6 transform group-hover:-translate-y-2 transition-transform duration-300">
-                        <span class="inline-block px-3 py-1 bg-primary/80 text-black text-xs font-bold rounded-full mb-3">Zurich</span>
-                        <h3 class="text-xl font-bold mb-2">Swiss Gold Vault</h3>
-                        <p class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">500,000 oz capacity in Swiss Alps bunker. Military-grade security with biometric access.</p>
-                    </div>
-                </div>
-                
-                <!-- Vault 3 -->
-                <div class="group relative overflow-hidden rounded-2xl h-80 cursor-pointer bg-gradient-to-br from-primary/10 via-black to-primary/5 border border-primary/20">
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <span class="material-symbols-outlined text-primary text-8xl opacity-30">security</span>
-                    </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-                    <div class="absolute bottom-0 left-0 right-0 p-6 transform group-hover:-translate-y-2 transition-transform duration-300">
-                        <span class="inline-block px-3 py-1 bg-primary/80 text-black text-xs font-bold rounded-full mb-3">Singapore</span>
-                        <h3 class="text-xl font-bold mb-2">Asia Pacific Vault</h3>
-                        <p class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">150,000 oz capacity in Singapore's freeport zone. Tax-efficient storage with global access.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="text-center mt-12">
-                <a href="{% url 'services' %}" class="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-black font-bold py-4 px-8 rounded-xl shadow-lg transition-all hover:scale-105">
-                    Learn About Storage
-                    <span class="material-symbols-outlined">arrow_forward</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Investment Dashboard Widget -->
-    <section class="px-4 md:px-8 py-12">
-        <div class="bg-gradient-to-r from-primary/10 to-primary/5 rounded-2xl border border-primary/20 shadow-lg p-6 md:p-10 max-w-5xl mx-auto hover:border-primary/40 transition-colors">
-            <div class="flex items-center justify-between mb-6">
-                <h3 class="font-bold text-xl md:text-2xl flex items-center gap-2 text-text-main-light">
-                    <span class="material-symbols-outlined text-primary">trending_up</span>
-                    Gold Market Performance
-                </h3>
-                <span class="text-xs md:text-sm font-mono text-text-sec-light bg-black/30 px-3 py-1 rounded-full">Live Updates</span>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Investment Plan A -->
-                <div class="bg-surface-light p-6 rounded-xl border border-gray-700">
-                    <div class="flex justify-between items-end mb-3">
-                        <div>
-                            <p class="text-sm font-medium text-text-sec-light">Gold Accumulator Plan</p>
-                            <p class="text-3xl font-bold tracking-tight text-text-main-light">6.8% <span class="text-sm font-normal text-green-500 ml-1">APY</span></p>
-                        </div>
-                        <div class="h-10 w-28 bg-green-900/20 rounded-lg flex items-center justify-center">
-                            <svg fill="none" height="30" viewbox="0 0 100 30" width="100" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M1 25C12 23 15 20 20 17C25 14 30 19 35 15C40 11 45 17 55 10C60 7 70 13 99 6" stroke="#22c55e" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="w-full bg-gray-700 h-2 rounded-full overflow-hidden">
-                        <div class="bg-green-500 h-full rounded-full animate-pulse" style="width: 82%"></div>
-                    </div>
-                    <p class="text-sm text-text-sec-light mt-2 text-right">82% Subscribed</p>
-                </div>
-                <!-- Investment Plan B -->
-                <div class="bg-surface-light p-6 rounded-xl border border-gray-700">
-                    <div class="flex justify-between items-end mb-6">
-                        <div>
-                            <p class="text-sm font-medium text-text-sec-light">GIB Tokens</p>
-                            <p class="text-3xl font-bold tracking-tight text-text-main-light">$42.85 <span class="text-sm font-normal text-primary ml-1">+2.1%</span></p>
-                        </div>
-                        <div class="h-10 w-28 bg-primary/20 rounded-lg flex items-center justify-center">
-                            <svg fill="none" height="30" viewbox="0 0 100 30" width="100" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M1 23C10 23 15 27 25 20C35 13 40 17 50 15C60 13 65 10 99 7" stroke="#D4AF37" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <button class="w-full py-3 bg-primary hover:bg-primary-dark text-black font-bold rounded-lg shadow-md hover:shadow-lg transition-all">
-                        View Portfolio Details
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why Us Grid -->
-    <section class="py-12 md:py-16 px-4 md:px-8">
-        <h3 class="text-2xl md:text-3xl font-bold mb-8 text-center text-text-main-light">Why Gold Investment Broker?</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="bg-surface-light p-6 rounded-xl border border-gray-700 hover:border-primary/50 transition-colors text-center">
-                <span class="material-symbols-outlined text-primary mb-4 text-4xl">verified</span>
-                <h5 class="font-bold text-lg mb-2 text-text-main-light">LBMA Certified</h5>
-                <p class="text-text-sec-light">All gold is certified and stored in LBMA-approved vaults.</p>
-            </div>
-            <div class="bg-surface-light p-6 rounded-xl border border-gray-700 hover:border-primary/50 transition-colors text-center">
-                <span class="material-symbols-outlined text-primary mb-4 text-4xl">security</span>
-                <h5 class="font-bold text-lg mb-2 text-text-main-light">100% Insured</h5>
-                <p class="text-text-sec-light">Full insurance coverage on all stored assets.</p>
-            </div>
-            <div class="bg-surface-light p-6 rounded-xl border border-gray-700 hover:border-primary/50 transition-colors text-center">
-                <span class="material-symbols-outlined text-primary mb-4 text-4xl">speed</span>
-                <h5 class="font-bold text-lg mb-2 text-text-main-light">Fast Trading</h5>
-                <p class="text-text-sec-light">Buy and sell instantly with competitive spreads.</p>
-            </div>
-            <div class="bg-surface-light p-6 rounded-xl border border-gray-700 hover:border-primary/50 transition-colors text-center">
-                <span class="material-symbols-outlined text-primary mb-4 text-4xl">support_agent</span>
-                <h5 class="font-bold text-lg mb-2 text-text-main-light">24/7 Support</h5>
-                <p class="text-text-sec-light">Expert advisors available around the clock.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Latest Insights (Blog) -->
-    <section class="py-12 md:py-20 px-4 md:px-8 bg-surface-light">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
-                <div>
-                    <span class="text-primary font-bold text-sm tracking-wider uppercase mb-2 block">Latest Insights</span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-text-main-light">Gold Market News & Analysis</h2>
-                </div>
-                <a href="#" class="text-primary font-bold hover:underline flex items-center gap-1">View All Posts <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Post 1 -->
-                <article class="group bg-surface-light rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-700 flex flex-col h-full hover:border-primary/50">
-                    <div class="h-48 overflow-hidden relative bg-gradient-to-br from-primary/20 to-black flex items-center justify-center">
-                        <span class="material-symbols-outlined text-primary text-6xl opacity-40">trending_up</span>
-                        <span class="absolute top-4 left-4 bg-primary text-black text-xs font-bold px-3 py-1 rounded-full shadow-md">Market Analysis</span>
-                    </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <div class="flex items-center gap-2 text-xs text-text-sec-light mb-3">
-                            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">calendar_today</span> Jan 15, 2026</span>
-                            <span>•</span>
-                            <span>5 min read</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-text-main-light mb-3 group-hover:text-primary transition-colors">2026 Gold Price Outlook: What Experts Predict</h3>
-                        <p class="text-sm text-text-sec-light mb-4 line-clamp-3">Analyzing the key factors that will drive gold prices in 2026, including central bank policies, geopolitical tensions, and inflation trends.</p>
-                        <div class="mt-auto pt-4 border-t border-gray-700">
-                            <span class="text-sm font-bold text-primary flex items-center gap-1 group-hover:gap-2 transition-all">Read Article <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
-                        </div>
-                    </div>
-                </article>
-                
-                <!-- Post 2 -->
-                <article class="group bg-surface-light rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-700 flex flex-col h-full hover:border-primary/50">
-                    <div class="h-48 overflow-hidden relative bg-gradient-to-br from-primary/20 to-black flex items-center justify-center">
-                        <span class="material-symbols-outlined text-primary text-6xl opacity-40">diamond</span>
-                        <span class="absolute top-4 left-4 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">Investment Guide</span>
-                    </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <div class="flex items-center gap-2 text-xs text-text-sec-light mb-3">
-                            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">calendar_today</span> Jan 10, 2026</span>
-                            <span>•</span>
-                            <span>7 min read</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-text-main-light mb-3 group-hover:text-primary transition-colors">Physical Gold vs Gold ETFs: Which Is Right for You?</h3>
-                        <p class="text-sm text-text-sec-light mb-4 line-clamp-3">A comprehensive comparison of owning physical gold versus gold ETFs, exploring the pros, cons, and ideal scenarios for each approach.</p>
-                        <div class="mt-auto pt-4 border-t border-gray-700">
-                            <span class="text-sm font-bold text-primary flex items-center gap-1 group-hover:gap-2 transition-all">Read Article <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Post 3 -->
-                <article class="group bg-surface-light rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-700 flex flex-col h-full hover:border-primary/50">
-                    <div class="h-48 overflow-hidden relative bg-gradient-to-br from-primary/20 to-black flex items-center justify-center">
-                        <span class="material-symbols-outlined text-primary text-6xl opacity-40">account_balance</span>
-                        <span class="absolute top-4 left-4 bg-primary text-black text-xs font-bold px-3 py-1 rounded-full shadow-md">Research</span>
-                    </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <div class="flex items-center gap-2 text-xs text-text-sec-light mb-3">
-                            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">calendar_today</span> Jan 5, 2026</span>
-                            <span>•</span>
-                            <span>6 min read</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-text-main-light mb-3 group-hover:text-primary transition-colors">Why Central Banks Are Buying Record Amounts of Gold</h3>
-                        <p class="text-sm text-text-sec-light mb-4 line-clamp-3">Understanding the unprecedented gold-buying trend among central banks and what it signals for individual investors.</p>
-                        <div class="mt-auto pt-4 border-t border-gray-700">
-                            <span class="text-sm font-bold text-primary flex items-center gap-1 group-hover:gap-2 transition-all">Read Article <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonial Slider -->
-    <section class="py-12 md:py-16 px-4 md:px-8 bg-black">
-        <div class="max-w-6xl mx-auto">
-            <h3 class="text-2xl md:text-3xl font-bold mb-8 text-center text-text-main-light">What Our Investors Say</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-surface-light border border-gray-700 p-6 rounded-xl shadow-sm relative hover:shadow-md hover:border-primary/30 transition-all">
-                    <span class="material-symbols-outlined text-primary/20 absolute top-4 right-4 text-5xl">format_quote</span>
-                    <p class="text-lg italic text-text-main-light mb-6 z-10 relative">"Gold Investment Broker made it incredibly easy to diversify my portfolio with physical gold. The storage in Swiss vaults gives me peace of mind."</p>
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
-                            <span class="text-primary font-bold">MJ</span>
-                        </div>
-                        <div>
-                            <p class="text-base font-bold text-text-main-light">Michael Johnson</p>
-                            <p class="text-sm text-text-sec-light uppercase tracking-wider">Private Investor</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-surface-light border border-gray-700 p-6 rounded-xl shadow-sm relative hover:shadow-md hover:border-primary/30 transition-all">
-                    <span class="material-symbols-outlined text-primary/20 absolute top-4 right-4 text-5xl">format_quote</span>
-                    <p class="text-lg italic text-text-main-light mb-6 z-10 relative">"The GIB token system is brilliant. I can trade my gold holdings 24/7 without the hassle of physical delivery. Excellent platform."</p>
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
-                            <span class="text-primary font-bold">EW</span>
-                        </div>
-                        <div>
-                            <p class="text-base font-bold text-text-main-light">Emma Williams</p>
-                            <p class="text-sm text-text-sec-light uppercase tracking-wider">Wealth Manager</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="py-12 md:py-20 px-4 md:px-8 max-w-4xl mx-auto">
-        <div class="text-center mb-12">
-            <span class="text-primary font-bold text-sm tracking-wider uppercase mb-2 block">Common Questions</span>
-            <h2 class="text-3xl md:text-4xl font-bold text-text-main-light">Frequently Asked Questions</h2>
-        </div>
-
-        <div class="flex flex-col gap-4">
-            <!-- FAQ Item 1 -->
-            <details class="group bg-surface-light border border-gray-700 rounded-xl overflow-hidden [&_summary::-webkit-details-marker]:hidden hover:border-primary/30 transition-colors">
-                <summary class="flex items-center justify-between p-6 cursor-pointer text-lg font-bold text-text-main-light hover:bg-gray-800/30 transition-colors">
-                    How do I start investing in gold?
-                    <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180">expand_more</span>
-                </summary>
-                <div class="px-6 pb-6 text-text-sec-light leading-relaxed">
-                    Getting started is simple. Create an account, complete identity verification, and fund your account. You can begin buying physical gold or GIB tokens with as little as $100.
-                </div>
-            </details>
-            <!-- FAQ Item 2 -->
-            <details class="group bg-surface-light border border-gray-700 rounded-xl overflow-hidden [&_summary::-webkit-details-marker]:hidden hover:border-primary/30 transition-colors">
-                <summary class="flex items-center justify-between p-6 cursor-pointer text-lg font-bold text-text-main-light hover:bg-gray-800/30 transition-colors">
-                    Is my gold really stored in physical vaults?
-                    <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180">expand_more</span>
-                </summary>
-                <div class="px-6 pb-6 text-text-sec-light leading-relaxed">
-                    Yes. All gold is stored in LBMA-certified vaults in London, Zurich, and Singapore. Your holdings are fully allocated, segregated, and insured. You can request a vault audit report at any time.
-                </div>
-            </details>
-            <!-- FAQ Item 3 -->
-            <details class="group bg-surface-light border border-gray-700 rounded-xl overflow-hidden [&_summary::-webkit-details-marker]:hidden hover:border-primary/30 transition-colors">
-                <summary class="flex items-center justify-between p-6 cursor-pointer text-lg font-bold text-text-main-light hover:bg-gray-800/30 transition-colors">
-                    What are GIB Tokens?
-                    <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180">expand_more</span>
-                </summary>
-                <div class="px-6 pb-6 text-text-sec-light leading-relaxed">
-                    GIB (Gold Investment Broker) Tokens are digital representations of physical gold. Each token is backed 1:1 by real gold in our vaults, allowing you to trade gold 24/7 with instant settlement.
-                </div>
-            </details>
-            <!-- FAQ Item 4 -->
-            <details class="group bg-surface-light border border-gray-700 rounded-xl overflow-hidden [&_summary::-webkit-details-marker]:hidden hover:border-primary/30 transition-colors">
-                <summary class="flex items-center justify-between p-6 cursor-pointer text-lg font-bold text-text-main-light hover:bg-gray-800/30 transition-colors">
-                    Can I take physical delivery of my gold?
-                    <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180">expand_more</span>
-                </summary>
-                <div class="px-6 pb-6 text-text-sec-light leading-relaxed">
-                    Yes. You can request physical delivery of your gold holdings. We offer insured shipping worldwide for gold bars (minimum 100g) and coins. Delivery typically takes 5-10 business days.
-                </div>
-            </details>
-            <!-- FAQ Item 5 -->
-            <details class="group bg-surface-light border border-gray-700 rounded-xl overflow-hidden [&_summary::-webkit-details-marker]:hidden hover:border-primary/30 transition-colors">
-                <summary class="flex items-center justify-between p-6 cursor-pointer text-lg font-bold text-text-main-light hover:bg-gray-800/30 transition-colors">
-                    What are the storage fees?
-                    <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180">expand_more</span>
-                </summary>
-                <div class="px-6 pb-6 text-text-sec-light leading-relaxed">
-                    Storage fees are 0.12% annually, calculated daily and deducted monthly. This includes full insurance, vault security, and regular auditing. There are no hidden fees.
-                </div>
-            </details>
-            <!-- FAQ Item 6 -->
-            <details class="group bg-surface-light border border-gray-700 rounded-xl overflow-hidden [&_summary::-webkit-details-marker]:hidden hover:border-primary/30 transition-colors">
-                <summary class="flex items-center justify-between p-6 cursor-pointer text-lg font-bold text-text-main-light hover:bg-gray-800/30 transition-colors">
-                    What payment methods do you accept?
-                    <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180">expand_more</span>
-                </summary>
-                <div class="px-6 pb-6 text-text-sec-light leading-relaxed">
-                    We accept bank wire transfers, credit/debit cards, and cryptocurrencies including Bitcoin (BTC), Ethereum (ETH), USDT, and USDC.
-                </div>
-            </details>
-            <!-- FAQ Item 7 -->
-            <details class="group bg-surface-light border border-gray-700 rounded-xl overflow-hidden [&_summary::-webkit-details-marker]:hidden hover:border-primary/30 transition-colors">
-                <summary class="flex items-center justify-between p-6 cursor-pointer text-lg font-bold text-text-main-light hover:bg-gray-800/30 transition-colors">
-                    How do I contact customer support?
-                    <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180">expand_more</span>
-                </summary>
-                <div class="px-6 pb-6 text-text-sec-light leading-relaxed">
-                    Our support team is available 24/7 via live chat, email (support@goldinvestmentbroker.com), and phone. Premium account holders have access to dedicated account managers.
-                </div>
-            </details>
-        </div>
-    </section>
-
-    <!-- Call to Action Footer -->
-    <section class="py-20 px-4 md:px-8 bg-gradient-to-br from-primary to-primary-dark relative overflow-hidden text-center text-black">
-        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
-        <div class="absolute -top-24 -left-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
-        <div class="absolute -bottom-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
-        
-        <div class="relative z-10 max-w-3xl mx-auto">
-            <h2 class="text-3xl md:text-5xl font-bold mb-6">Ready to Invest in Gold?</h2>
-            <p class="text-black/80 text-lg md:text-xl mb-10">Join thousands of investors building lasting wealth through precious metals.</p>
-            <div class="flex flex-col sm:flex-row justify-center gap-6">
-                <a href="{% url 'dashboard' %}" class="bg-black text-primary font-bold py-4 px-10 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all text-lg">
+            <h2 class="text-5xl md:text-7xl font-extrabold leading-[1.05] tracking-tighter">
+                Preserve Your <br/>
+                Wealth with <br/>
+                <span class="text-primary italic">Pure Gold.</span>
+            </h2>
+            <p class="text-lg text-text-sec-dark max-w-lg leading-relaxed">
+                The ultimate hedge against inflation. Secure, transparent, and liquid physical assets for the modern investor. 
+                Insured storage in global vaults with 24/7 digital accessibility.
+            </p>
+            <div class="flex flex-wrap gap-4 pt-4">
+                <a href="{% url 'register' %}" class="gold-shimmer px-8 py-4 text-background-dark font-extrabold rounded-xl text-lg shadow-[0_10px_30px_rgba(212,175,55,0.3)] hover:scale-105 transition-transform">
                     Start Investing
                 </a>
-                <a href="{% url 'contact' %}" class="bg-transparent border-2 border-black text-black font-bold py-4 px-10 rounded-xl hover:bg-black/10 transition-all text-lg">
-                    Contact Us
+                <a href="{% url 'dashboard' %}" class="px-8 py-4 bg-white/5 border border-white/10 backdrop-blur-md text-white font-bold rounded-xl text-lg hover:bg-white/10 transition-all flex items-center gap-2">
+                    <span class="material-symbols-outlined">analytics</span>
+                    Live Charts
                 </a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
+<!-- Live Ticker Bar -->
+<section class="bg-surface-dark border-y border-white/5 overflow-hidden py-4">
+    <div class="flex items-center gap-12 animate-marquee whitespace-nowrap px-6">
+        <div class="flex items-center gap-3">
+            <span class="text-xs font-bold text-text-sec-dark uppercase">XAU/USD</span>
+            <span class="text-lg font-bold font-mono text-text-main-dark">$2,345.60</span>
+            <span class="text-xs font-bold text-green-500 flex items-center"><span class="material-symbols-outlined text-sm">arrow_drop_up</span>+1.24%</span>
+        </div>
+        <div class="h-4 w-px bg-white/10"></div>
+        <div class="flex items-center gap-3">
+            <span class="text-xs font-bold text-text-sec-dark uppercase">XAG/USD</span>
+            <span class="text-lg font-bold font-mono text-text-main-dark">$29.42</span>
+            <span class="text-xs font-bold text-green-500 flex items-center"><span class="material-symbols-outlined text-sm">arrow_drop_up</span>+0.85%</span>
+        </div>
+        <div class="h-4 w-px bg-white/10"></div>
+        <div class="flex items-center gap-3">
+            <span class="text-xs font-bold text-text-sec-dark uppercase">XPT/USD</span>
+            <span class="text-lg font-bold font-mono text-text-main-dark">$1,024.15</span>
+            <span class="text-xs font-bold text-red-500 flex items-center"><span class="material-symbols-outlined text-sm">arrow_drop_down</span>-0.12%</span>
+        </div>
+        <div class="h-4 w-px bg-white/10"></div>
+        <div class="flex items-center gap-3">
+            <span class="text-xs font-bold text-text-sec-dark uppercase">Gold 1Kg Bar</span>
+            <span class="text-lg font-bold font-mono text-text-main-dark">$75,412.00</span>
+            <span class="text-xs font-bold text-green-500 flex items-center"><span class="material-symbols-outlined text-sm">arrow_drop_up</span>+1.10%</span>
+        </div>
+        <div class="h-4 w-px bg-white/10"></div>
+        <div class="flex items-center gap-3">
+            <span class="text-xs font-bold text-text-sec-dark uppercase">GIB Token</span>
+            <span class="text-lg font-bold font-mono text-text-main-dark">$23.85</span>
+            <span class="text-xs font-bold text-green-500 flex items-center"><span class="material-symbols-outlined text-sm">arrow_drop_up</span>+2.45%</span>
+        </div>
+        <!-- Duplicate for seamless loop -->
+        <div class="h-4 w-px bg-white/10"></div>
+        <div class="flex items-center gap-3">
+            <span class="text-xs font-bold text-text-sec-dark uppercase">XAU/USD</span>
+            <span class="text-lg font-bold font-mono text-text-main-dark">$2,345.60</span>
+            <span class="text-xs font-bold text-green-500 flex items-center"><span class="material-symbols-outlined text-sm">arrow_drop_up</span>+1.24%</span>
+        </div>
+        <div class="h-4 w-px bg-white/10"></div>
+        <div class="flex items-center gap-3">
+            <span class="text-xs font-bold text-text-sec-dark uppercase">XAG/USD</span>
+            <span class="text-lg font-bold font-mono text-text-main-dark">$29.42</span>
+            <span class="text-xs font-bold text-green-500 flex items-center"><span class="material-symbols-outlined text-sm">arrow_drop_up</span>+0.85%</span>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="max-w-7xl mx-auto px-6 py-24">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+        <div class="space-y-4">
+            <h3 class="text-primary font-bold uppercase tracking-[0.2em] text-sm">Our Ecosystem</h3>
+            <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight text-text-main-dark">Financial Mastery <br/>meets Tangible Assets</h2>
+        </div>
+        <p class="text-text-sec-dark max-w-sm">
+            Everything you need to manage your gold portfolio. From physical delivery to high-frequency digital trading.
+        </p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+        <!-- Service 1 -->
+        <div class="group relative bg-surface-dark rounded-2xl p-8 border border-white/5 hover:border-primary/40 transition-all duration-500">
+            <div class="mb-8 w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                <span class="material-symbols-outlined text-3xl">currency_exchange</span>
+            </div>
+            <h4 class="text-2xl font-bold mb-4 text-text-main-dark">Instant Trading</h4>
+            <p class="text-text-sec-dark leading-relaxed mb-8">
+                Buy and sell 99.9% pure gold bullion instantly. Low spreads, no hidden fees, and lightning-fast execution.
+            </p>
+            <a class="flex items-center gap-2 text-primary font-bold hover:gap-4 transition-all uppercase text-xs tracking-widest" href="{% url 'dashboard' %}">
+                Start Trading <span class="material-symbols-outlined">arrow_forward</span>
+            </a>
+        </div>
+        <!-- Service 2 -->
+        <div class="group relative bg-surface-dark rounded-2xl p-8 border border-white/5 hover:border-primary/40 transition-all duration-500">
+            <div class="mb-8 w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                <span class="material-symbols-outlined text-3xl">encrypted</span>
+            </div>
+            <h4 class="text-2xl font-bold mb-4 text-text-main-dark">Secured Vaulting</h4>
+            <p class="text-text-sec-dark leading-relaxed mb-8">
+                Your assets are stored in LBMA-approved, high-security vaults across Zurich, London, and Singapore.
+            </p>
+            <a class="flex items-center gap-2 text-primary font-bold hover:gap-4 transition-all uppercase text-xs tracking-widest" href="{% url 'services' %}">
+                Explore Vaults <span class="material-symbols-outlined">arrow_forward</span>
+            </a>
+        </div>
+        <!-- Service 3 -->
+        <div class="group relative bg-surface-dark rounded-2xl p-8 border border-white/5 hover:border-primary/40 transition-all duration-500">
+            <div class="mb-8 w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                <span class="material-symbols-outlined text-3xl">show_chart</span>
+            </div>
+            <h4 class="text-2xl font-bold mb-4 text-text-main-dark">Gold Shares</h4>
+            <p class="text-text-sec-dark leading-relaxed mb-8">
+                Trade digital certificates backed 1:1 by physical gold. Full fractional ownership with instant liquidity.
+            </p>
+            <a class="flex items-center gap-2 text-primary font-bold hover:gap-4 transition-all uppercase text-xs tracking-widest" href="{% url 'dashboard' %}">
+                View Shares <span class="material-symbols-outlined">arrow_forward</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Why Invest Section -->
+<section class="relative bg-white/[0.02] py-24 overflow-hidden">
+    <div class="absolute top-0 right-0 w-1/3 h-full bg-primary/5 blur-[120px] pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid lg:grid-cols-2 gap-20 items-center">
+            <div class="order-2 lg:order-1 relative">
+                <div class="aspect-square bg-gradient-to-tr from-surface-dark to-slate-900 rounded-3xl border border-white/5 p-8 relative overflow-hidden shadow-2xl">
+                    <div class="absolute -top-20 -right-20 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
+                    <div class="space-y-6 relative z-10">
+                        <div class="p-6 bg-white/5 rounded-2xl border border-white/5 flex items-center gap-6">
+                            <div class="w-12 h-12 rounded-full bg-green-500/20 text-green-500 flex items-center justify-center">
+                                <span class="material-symbols-outlined">verified_user</span>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-text-main-dark">Lloyd's Insured</p>
+                                <p class="text-xs text-text-sec-dark">Up to $500M coverage for all held assets</p>
+                            </div>
+                        </div>
+                        <div class="p-6 bg-white/5 rounded-2xl border border-white/5 flex items-center gap-6">
+                            <div class="w-12 h-12 rounded-full bg-primary/20 text-primary flex items-center justify-center">
+                                <span class="material-symbols-outlined">local_shipping</span>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-text-main-dark">Global Delivery</p>
+                                <p class="text-xs text-text-sec-dark">Insured door-to-door shipping worldwide</p>
+                            </div>
+                        </div>
+                        <div class="p-6 bg-white/5 rounded-2xl border border-white/5 flex items-center gap-6">
+                            <div class="w-12 h-12 rounded-full bg-blue-500/20 text-blue-500 flex items-center justify-center">
+                                <span class="material-symbols-outlined">history</span>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-text-main-dark">24/7 Liquidity</p>
+                                <p class="text-xs text-text-sec-dark">Instant buy-back at current market rates</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="order-1 lg:order-2 space-y-8">
+                <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight text-text-main-dark">The Gold Standard in <br/>Modern Finance</h2>
+                <p class="text-lg text-text-sec-dark leading-relaxed">
+                    Avalanch Metal bridges the gap between traditional asset security and modern digital accessibility. Our platform provides the infrastructure needed to protect your capital from market volatility.
+                </p>
+                <div class="grid grid-cols-2 gap-8">
+                    <div class="space-y-2">
+                        <p class="text-3xl font-extrabold text-primary">99.9%</p>
+                        <p class="text-sm font-bold text-text-sec-dark uppercase">Purity Certified</p>
+                    </div>
+                    <div class="space-y-2">
+                        <p class="text-3xl font-extrabold text-primary">120K+</p>
+                        <p class="text-sm font-bold text-text-sec-dark uppercase">Active Investors</p>
+                    </div>
+                    <div class="space-y-2">
+                        <p class="text-3xl font-extrabold text-primary">$4.2B</p>
+                        <p class="text-sm font-bold text-text-sec-dark uppercase">Assets Under Vault</p>
+                    </div>
+                    <div class="space-y-2">
+                        <p class="text-3xl font-extrabold text-primary">0%</p>
+                        <p class="text-sm font-bold text-text-sec-dark uppercase">Hidden Fees</p>
+                    </div>
+                </div>
+                <a href="{% url 'about' %}" class="flex items-center gap-3 text-lg font-bold text-primary group">
+                    Learn more about our security
+                    <span class="material-symbols-outlined group-hover:translate-x-2 transition-transform">trending_flat</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TradingView Widget -->
+<section class="max-w-7xl mx-auto px-6 py-16">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+        <div>
+            <h3 class="text-primary font-bold uppercase tracking-[0.2em] text-sm mb-2">Live Market</h3>
+            <h2 class="text-3xl font-extrabold text-text-main-dark">Gold Price Chart</h2>
+        </div>
+        <a href="{% url 'dashboard' %}" class="flex items-center gap-2 text-primary font-bold hover:gap-3 transition-all">
+            Full Dashboard <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+    </div>
+    <div class="bg-surface-dark rounded-2xl border border-white/5 p-4 overflow-hidden">
+        <!-- TradingView Widget BEGIN -->
+        <div class="tradingview-widget-container" style="height:400px;">
+            <div id="tradingview_gold" style="height:100%;"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+            <script type="text/javascript">
+            new TradingView.widget({
+                "autosize": true,
+                "symbol": "TVC:GOLD",
+                "interval": "D",
+                "timezone": "Etc/UTC",
+                "theme": "dark",
+                "style": "2",
+                "locale": "en",
+                "toolbar_bg": "#0a0a0a",
+                "enable_publishing": false,
+                "hide_top_toolbar": true,
+                "hide_legend": false,
+                "save_image": false,
+                "container_id": "tradingview_gold",
+                "backgroundColor": "rgba(10, 10, 10, 1)",
+                "gridColor": "rgba(255, 255, 255, 0.05)"
+            });
+            </script>
+        </div>
+        <!-- TradingView Widget END -->
+    </div>
+</section>
+
+<!-- Investment Plans Section -->
+<section class="max-w-7xl mx-auto px-6 py-24">
+    <div class="text-center mb-16">
+        <h3 class="text-primary font-bold uppercase tracking-[0.2em] text-sm mb-4">Investment Options</h3>
+        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight text-text-main-dark">Choose Your Gold Strategy</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+        <!-- Plan 1 -->
+        <div class="bg-surface-dark rounded-2xl p-8 border border-white/5 hover:border-primary/30 transition-all relative overflow-hidden group">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div class="relative z-10">
+                <h4 class="text-xl font-bold text-text-main-dark mb-2">Gold Starter</h4>
+                <p class="text-text-sec-dark text-sm mb-6">Perfect for new investors</p>
+                <div class="flex items-baseline gap-1 mb-6">
+                    <span class="text-4xl font-extrabold text-primary">$100</span>
+                    <span class="text-text-sec-dark">minimum</span>
+                </div>
+                <ul class="space-y-3 mb-8">
+                    <li class="flex items-center gap-3 text-sm text-text-sec-dark">
+                        <span class="material-symbols-outlined text-green-500 text-lg">check_circle</span>
+                        Buy fractional gold ounces
+                    </li>
+                    <li class="flex items-center gap-3 text-sm text-text-sec-dark">
+                        <span class="material-symbols-outlined text-green-500 text-lg">check_circle</span>
+                        Secure vault storage
+                    </li>
+                    <li class="flex items-center gap-3 text-sm text-text-sec-dark">
+                        <span class="material-symbols-outlined text-green-500 text-lg">check_circle</span>
+                        Real-time price tracking
+                    </li>
+                </ul>
+                <a href="{% url 'register' %}" class="block w-full text-center py-3 bg-white/5 border border-white/10 rounded-xl font-bold text-text-main-dark hover:bg-primary hover:text-background-dark transition-all">
+                    Get Started
+                </a>
+            </div>
+        </div>
+        <!-- Plan 2 - Featured -->
+        <div class="bg-gradient-to-b from-primary/10 to-surface-dark rounded-2xl p-8 border border-primary/30 relative overflow-hidden scale-105 shadow-xl">
+            <div class="absolute top-4 right-4 bg-primary text-background-dark text-xs font-bold px-3 py-1 rounded-full">
+                POPULAR
+            </div>
+            <div class="relative z-10">
+                <h4 class="text-xl font-bold text-text-main-dark mb-2">Gold Accumulator</h4>
+                <p class="text-text-sec-dark text-sm mb-6">Build wealth systematically</p>
+                <div class="flex items-baseline gap-1 mb-6">
+                    <span class="text-4xl font-extrabold text-primary">$1,000</span>
+                    <span class="text-text-sec-dark">minimum</span>
+                </div>
+                <ul class="space-y-3 mb-8">
+                    <li class="flex items-center gap-3 text-sm text-text-sec-dark">
+                        <span class="material-symbols-outlined text-green-500 text-lg">check_circle</span>
+                        Monthly auto-investment
+                    </li>
+                    <li class="flex items-center gap-3 text-sm text-text-sec-dark">
+                        <span class="material-symbols-outlined text-green-500 text-lg">check_circle</span>
+                        Priority vault allocation
+                    </li>
+                    <li class="flex items-center gap-3 text-sm text-text-sec-dark">
+                        <span class="material-symbols-outlined text-green-500 text-lg">check_circle</span>
+                        Physical delivery option
+                    </li>
+                    <li class="flex items-center gap-3 text-sm text-text-sec-dark">
+                        <span class="material-symbols-outlined text-green-500 text-lg">check_circle</span>
+                        Dedicated account manager
+                    </li>
+                </ul>
+                <a href="{% url 'register' %}" class="gold-shimmer block w-full text-center py-3 rounded-xl font-bold text-background-dark hover:scale-105 transition-transform">
+                    Start Accumulating
+                </a>
+            </div>
+        </div>
+        <!-- Plan 3 -->
+        <div class="bg-surface-dark rounded-2xl p-8 border border-white/5 hover:border-primary/30 transition-all relative overflow-hidden group">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div class="relative z-10">
+                <h4 class="text-xl font-bold text-text-main-dark mb-2">GIB Tokens</h4>
+                <p class="text-text-sec-dark text-sm mb-6">Digital gold trading</p>
+                <div class="flex items-baseline gap-1 mb-6">
+                    <span class="text-4xl font-extrabold text-primary">$50</span>
+                    <span class="text-text-sec-dark">minimum</span>
+                </div>
+                <ul class="space-y-3 mb-8">
+                    <li class="flex items-center gap-3 text-sm text-text-sec-dark">
+                        <span class="material-symbols-outlined text-green-500 text-lg">check_circle</span>
+                        1:1 gold-backed tokens
+                    </li>
+                    <li class="flex items-center gap-3 text-sm text-text-sec-dark">
+                        <span class="material-symbols-outlined text-green-500 text-lg">check_circle</span>
+                        24/7 instant trading
+                    </li>
+                    <li class="flex items-center gap-3 text-sm text-text-sec-dark">
+                        <span class="material-symbols-outlined text-green-500 text-lg">check_circle</span>
+                        Cross-platform transfers
+                    </li>
+                </ul>
+                <a href="{% url 'register' %}" class="block w-full text-center py-3 bg-white/5 border border-white/10 rounded-xl font-bold text-text-main-dark hover:bg-primary hover:text-background-dark transition-all">
+                    Buy Tokens
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="max-w-4xl mx-auto px-6 py-24">
+    <div class="text-center mb-12">
+        <h3 class="text-primary font-bold uppercase tracking-[0.2em] text-sm mb-4">Common Questions</h3>
+        <h2 class="text-4xl font-extrabold text-text-main-dark">Frequently Asked</h2>
+    </div>
+    <div class="space-y-4">
+        <details class="group bg-surface-dark rounded-2xl border border-white/5 overflow-hidden hover:border-primary/30 transition-colors">
+            <summary class="flex items-center justify-between p-6 cursor-pointer text-lg font-bold text-text-main-dark">
+                How do I start investing in gold?
+                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-primary">expand_more</span>
+            </summary>
+            <div class="px-6 pb-6 text-text-sec-dark leading-relaxed">
+                Create an account, complete identity verification, and fund your account. You can begin buying physical gold or GIB tokens with as little as $50.
+            </div>
+        </details>
+        <details class="group bg-surface-dark rounded-2xl border border-white/5 overflow-hidden hover:border-primary/30 transition-colors">
+            <summary class="flex items-center justify-between p-6 cursor-pointer text-lg font-bold text-text-main-dark">
+                Is my gold stored in physical vaults?
+                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-primary">expand_more</span>
+            </summary>
+            <div class="px-6 pb-6 text-text-sec-dark leading-relaxed">
+                Yes. All gold is stored in LBMA-certified vaults in London, Zurich, and Singapore. Your holdings are fully allocated, segregated, and insured up to $500M.
+            </div>
+        </details>
+        <details class="group bg-surface-dark rounded-2xl border border-white/5 overflow-hidden hover:border-primary/30 transition-colors">
+            <summary class="flex items-center justify-between p-6 cursor-pointer text-lg font-bold text-text-main-dark">
+                Can I take physical delivery of my gold?
+                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-primary">expand_more</span>
+            </summary>
+            <div class="px-6 pb-6 text-text-sec-dark leading-relaxed">
+                Yes. You can request physical delivery of your gold holdings. We offer insured door-to-door shipping worldwide for gold bars (min 100g) and coins.
+            </div>
+        </details>
+        <details class="group bg-surface-dark rounded-2xl border border-white/5 overflow-hidden hover:border-primary/30 transition-colors">
+            <summary class="flex items-center justify-between p-6 cursor-pointer text-lg font-bold text-text-main-dark">
+                What are GIB Tokens?
+                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-primary">expand_more</span>
+            </summary>
+            <div class="px-6 pb-6 text-text-sec-dark leading-relaxed">
+                AM (Avalanch Metal) Tokens are digital representations of physical gold. Each token is backed 1:1 by real gold in our vaults, allowing you to trade 24/7.
+            </div>
+        </details>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="max-w-7xl mx-auto px-6 py-24">
+    <div class="gold-shimmer rounded-[2rem] p-12 md:p-20 text-background-dark text-center space-y-8 shadow-2xl relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
+        <div class="relative z-10 max-w-2xl mx-auto space-y-6">
+            <h2 class="text-4xl md:text-6xl font-black tracking-tight">Ready to Secure Your Future?</h2>
+            <p class="text-lg font-bold opacity-80">Join thousands of investors who have protected their wealth with Avalanch Metal. Account setup takes less than 5 minutes.</p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                <a href="{% url 'register' %}" class="bg-background-dark text-white px-10 py-5 rounded-xl font-extrabold text-xl shadow-2xl hover:scale-105 transition-transform">
+                    Create Free Account
+                </a>
+                <a href="{% url 'contact' %}" class="border-2 border-background-dark/20 text-background-dark px-10 py-5 rounded-xl font-extrabold text-xl hover:bg-background-dark/5 transition-all">
+                    Talk to an Expert
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}

@@ -43,6 +43,19 @@
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <!-- Tailwind CSS -->
+     <!-- Smartsupp Live Chat script -->
+        <script type="text/javascript">
+        var _smartsupp = _smartsupp || {};
+        _smartsupp.key = '815ca0bb0760e4a03cfc697ae1b66a7d23fa15a3';
+        window.smartsupp||(function(d) {
+        var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+        s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+        c.type='text/javascript';c.charset='utf-8';c.async=true;
+        c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+        })(document);
+        </script>
+        <noscript>Powered by <a href="https://www.smartsupp.com" target="_blank">Smartsupp</a></noscript>
+
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script>
         tailwind.config = {
@@ -83,61 +96,64 @@
 </head>
 <body class="bg-background-dark font-display text-text-main-dark antialiased">
     <!-- Header -->
-    <header class="fixed top-0 w-full z-50 bg-background-dark/80 backdrop-blur-xl border-b border-white/5 px-6 h-20 flex justify-between items-center">
-        <!-- Logo -->
-        <a href="{% url 'home' %}" class="flex items-center gap-3">
-            <img src="{% static 'images/logo.png' %}" alt="Avalanch Metal" class="h-12 w-auto">
-        </a>
-        
-        <!-- Desktop Navigation (Center) -->
-        <nav class="hidden md:flex items-center gap-8">
-            <a href="{% url 'home' %}" class="text-sm font-semibold hover:text-primary transition-colors">Home</a>
-            <a href="{% url 'about' %}" class="text-sm font-semibold hover:text-primary transition-colors">About</a>
-            <a href="{% url 'services' %}" class="text-sm font-semibold hover:text-primary transition-colors">Vaults</a>
-            <a href="{% url 'investment_plan' %}" class="text-sm font-semibold hover:text-primary transition-colors">Market</a>
-            <a href="{% url 'contact' %}" class="text-sm font-semibold hover:text-primary transition-colors">Contact</a>
-        </nav>
+    <header class="fixed top-0 w-full z-50 bg-background-dark/80 backdrop-blur-xl border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between">
+            <!-- Logo (Left) -->
+            <a href="{% url 'home' %}" class="flex items-center gap-2 shrink-0">
+                <img src="{% static 'images/logo.png' %}" alt="Avalanch Metal" class="h-8 md:h-12 w-auto">
+            </a>
+            
+            <!-- Desktop Navigation (Center) -->
+            <nav class="hidden md:flex items-center gap-8 flex-1 justify-center">
+                <a href="{% url 'home' %}" class="text-sm font-semibold hover:text-primary transition-colors">Home</a>
+                <a href="{% url 'about' %}" class="text-sm font-semibold hover:text-primary transition-colors">About</a>
+                <a href="{% url 'services' %}" class="text-sm font-semibold hover:text-primary transition-colors">Vaults</a>
+                <a href="{% url 'investment_plan' %}" class="text-sm font-semibold hover:text-primary transition-colors">Market</a>
+                <a href="{% url 'contact' %}" class="text-sm font-semibold hover:text-primary transition-colors">Contact</a>
+            </nav>
 
-        <div class="flex items-center gap-2">
-            <!-- Notification Dropdown -->
-            <div class="relative" id="notification-container">
-                <button id="notification-btn" class="flex items-center justify-center p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors relative">
-                    <span class="material-symbols-outlined text-text-main-light dark:text-text-main-dark">notifications</span>
-                    <span id="notification-badge" class="absolute top-1 right-1 min-w-[18px] h-[18px] bg-red-500 rounded-full text-[10px] text-white font-bold flex items-center justify-center hidden">0</span>
-                </button>
-                
-                <!-- Notification Dropdown Panel -->
-                <div id="notification-panel" class="absolute right-0 top-full mt-2 w-80 max-h-96 bg-surface-light border border-gray-700 rounded-xl shadow-2xl overflow-hidden opacity-0 invisible transform translate-y-2 transition-all duration-200 z-50">
-                    <div class="flex items-center justify-between p-4 border-b border-gray-700">
-                        <h3 class="font-bold text-sm text-text-main-light dark:text-text-main-dark">Notifications</h3>
-                        <button id="mark-all-read-btn" class="text-xs text-primary hover:text-primary-dark font-medium transition-colors">
-                            Mark all read
-                        </button>
-                    </div>
-                    <div id="notification-list" class="overflow-y-auto max-h-72">
-                        <div class="p-6 text-center text-text-sec-light dark:text-text-sec-dark text-sm">
-                            <span class="material-symbols-outlined text-3xl mb-2 block opacity-50">notifications_off</span>
-                            Loading...
+            <!-- Right Side (Notifications + Auth) -->
+            <div class="flex items-center gap-2 shrink-0">
+                <!-- Notification Dropdown -->
+                <div class="relative" id="notification-container">
+                    <button id="notification-btn" class="flex items-center justify-center p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors relative">
+                        <span class="material-symbols-outlined text-text-main-light dark:text-text-main-dark">notifications</span>
+                        <span id="notification-badge" class="absolute top-1 right-1 min-w-[18px] h-[18px] bg-red-500 rounded-full text-[10px] text-white font-bold flex items-center justify-center hidden">0</span>
+                    </button>
+                    
+                    <!-- Notification Dropdown Panel -->
+                    <div id="notification-panel" class="absolute right-0 top-full mt-2 w-80 max-h-96 bg-surface-light border border-gray-700 rounded-xl shadow-2xl overflow-hidden opacity-0 invisible transform translate-y-2 transition-all duration-200 z-50">
+                        <div class="flex items-center justify-between p-4 border-b border-gray-700">
+                            <h3 class="font-bold text-sm text-text-main-light dark:text-text-main-dark">Notifications</h3>
+                            <button id="mark-all-read-btn" class="text-xs text-primary hover:text-primary-dark font-medium transition-colors">
+                                Mark all read
+                            </button>
+                        </div>
+                        <div id="notification-list" class="overflow-y-auto max-h-72">
+                            <div class="p-6 text-center text-text-sec-light dark:text-text-sec-dark text-sm">
+                                <span class="material-symbols-outlined text-3xl mb-2 block opacity-50">notifications_off</span>
+                                Loading...
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <button id="menu-toggle" class="flex md:hidden items-center justify-center p-2 rounded-full hover:bg-gray-800 transition-colors">
-                <span class="material-symbols-outlined text-text-main-light">menu</span>
-            </button>
-            {% if user.is_authenticated %}
-                <a href="{% url 'dashboard' %}" class="hidden md:flex bg-primary hover:bg-primary-dark text-black text-sm font-bold py-2 px-4 rounded-lg transition-colors shadow-md hover:shadow-lg">
-                    Dashboard
-                </a>
-            {% else %}
-                <button class="hidden md:flex px-5 py-2 text-sm font-bold border border-white/10 rounded-lg hover:bg-white/5 transition-all">
-                    <a href="{% url 'login' %}">Login</a>
+                
+                <button id="menu-toggle" class="flex md:hidden items-center justify-center p-2 rounded-full hover:bg-gray-800 transition-colors">
+                    <span class="material-symbols-outlined text-text-main-light">menu</span>
                 </button>
-                <a href="{% url 'register' %}" class="hidden md:flex px-6 py-2 text-sm font-extrabold text-background-dark rounded-lg shadow-lg hover:shadow-primary/20 transition-all" style="background: linear-gradient(135deg, #eca305ff 0%, #eca305ff 50%, #eca305ff 100%);">
-                    Open Account
-                </a>
-            {% endif %}
+                {% if user.is_authenticated %}
+                    <a href="{% url 'dashboard' %}" class="hidden md:flex bg-primary hover:bg-primary-dark text-black text-sm font-bold py-2 px-4 rounded-lg transition-colors shadow-md hover:shadow-lg">
+                        Dashboard
+                    </a>
+                {% else %}
+                    <button class="hidden md:flex px-5 py-2 text-sm font-bold border border-white/10 rounded-lg hover:bg-white/5 transition-all">
+                        <a href="{% url 'login' %}">Login</a>
+                    </button>
+                    <a href="{% url 'register' %}" class="hidden md:flex px-6 py-2 text-sm font-extrabold text-background-dark rounded-lg shadow-lg hover:shadow-primary/20 transition-all" style="background: linear-gradient(135deg, #eca305ff 0%, #eca305ff 50%, #eca305ff 100%);">
+                        Open Account
+                    </a>
+                {% endif %}
+            </div>
         </div>
     </header>
 
@@ -200,13 +216,13 @@
         </div>
     </div>
 
-    <main class="pt-20">
+    <main class="pt-16 md:pt-20">
         {% block content %}{% endblock %}
     </main>
 
     <!-- Footer -->
-    <footer class="bg-card-dark border-t border-white/5 py-12">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+    <footer class="bg-card-dark border-t border-white/5 py-8 md:py-12">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-8 md:mb-12">
             <div class="space-y-6">
                 <div class="flex items-center gap-3">
                     <img src="{% static 'images/logo.png' %}" alt="Avalanch Metal" class="h-14 w-auto">

@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-)5^_@%%gi%n!3v-glfgp&)x5g7dws-f=2xbh$a7(=y%m&n^6t8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*', 'techodrill.com', 'www.techodrill.com', 'localhost', '127.0.0.1', '0.0.0.0', '127.0.0.1:8000', 'localhost:8000']
+ALLOWED_HOSTS = ['*', 'avalanchmetal.com', 'www.avalanchmetal.com', 'localhost', '127.0.0.1', '0.0.0.0', '127.0.0.1:8000', 'localhost:8000']
 
 
 # Application definition
@@ -140,12 +140,14 @@ USE_TZ = True
 
 # Email Configuration (Production)
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'wp54.host-ww.net'
+EMAIL_HOST = 'mail.avalanchmetal.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'info@techodrill.com'
-EMAIL_HOST_PASSWORD = 'QPp*s^mFmKrgPUjt'
-DEFAULT_FROM_EMAIL = 'info@techodrill.com'
+EMAIL_HOST_USER = 'support@avalanchmetal.com'
+EMAIL_HOST_PASSWORD = '$87hgTyUU*7dd4'
+DEFAULT_FROM_EMAIL = 'Avalanch Metal <support@avalanchmetal.com>'
+SERVER_EMAIL = 'support@avalanchmetal.com'
+ADMINS = [('Avalanch Metal Admin', 'support@avalanchmetal.com')]
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
@@ -153,6 +155,14 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+# login and logout urls
+LOGIN_URL = '/login/'
+LOGOUT_URL = '/logout/'
+# login redirect url
+LOGIN_REDIRECT_URL = '/dashboard/'
+# logout redirect url
+LOGOUT_REDIRECT_URL = '/login/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 

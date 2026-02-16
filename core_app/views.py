@@ -7,11 +7,12 @@ from django.db import transaction
 from django.http import JsonResponse
 from .forms import UserRegistrationForm, DepositForm, WithdrawalForm
 from .models import Account, Transaction, PaymentMethod, Deposit, Withdrawal, Project, Asset, Investment, InvestmentPlan, UserPlan, Notification, KYCDocument
-from .utils import send_transaction_email, send_transaction_request_email, send_investment_email
+from .utils import send_transaction_email, send_transaction_request_email, send_investment_email, send_login_email, send_registration_email
 
 # Front Pages
 def home(request):
-    return render(request, 'home.html')
+    plans = InvestmentPlan.objects.filter(is_active=True)
+    return render(request, 'home.html', {'plans': plans})
 
 def about(request):
     return render(request, 'about.html')
@@ -35,6 +36,7 @@ def login_view(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
+                send_login_email(user, request)
                 messages.info(request, f"You are now logged in as {username}.")
                 return redirect('dashboard')
             else:
@@ -66,6 +68,7 @@ def register(request):
                     pass  # Invalid referral code, just ignore
             
             login(request, user)
+            send_registration_email(user)
             messages.success(request, "Registration successful. Welcome to the dashboard!")
             return redirect('dashboard')
         else:

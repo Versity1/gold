@@ -200,7 +200,7 @@ class Command(BaseCommand):
             'plan': 'Investment Plan'
         }
         
-        subject = f"🎉 Investment Matured: {name}"
+        subject = f"Investment Matured: {name}"
         
         message = f"""
 Dear {user.first_name or user.username},
@@ -216,16 +216,16 @@ Investment Details:
 
 Your updated account balance is: ${user.account.balance:,.2f}
 
-Thank you for investing with Techodrill Oil and Gas. We look forward to helping you grow your wealth!
+Thank you for investing with Avalanch Metal. We look forward to helping you grow your wealth!
 
 Best regards,
-The Techodrill Team
+The Avalanch Metal Team
         """
         
         send_mail(
             subject,
             message,
-            settings.DEFAULT_FROM_EMAIL if hasattr(settings, 'DEFAULT_FROM_EMAIL') else 'noreply@techodrill.com',
+            settings.DEFAULT_FROM_EMAIL if hasattr(settings, 'DEFAULT_FROM_EMAIL') else 'support@avalanchmetal.com',
             [user.email],
             fail_silently=False,
         )

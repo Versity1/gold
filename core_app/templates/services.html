@@ -1,112 +1,441 @@
 {% extends 'base_front.html' %}
+{% load static %}
 
-{% block title %}Techo Drill Innovation - Services{% endblock %}
+{% block title %}Services | Avalanch Metal — Gold Investment & Vault Storage{% endblock %}
 
 {% block content %}
-    <!-- Hero Section -->
-    <div class="relative w-full h-[240px] md:h-[400px] bg-cover bg-center flex flex-col justify-end overflow-hidden md:rounded-2xl shadow-lg group mx-auto" data-alt="Futuristic blue energy waves abstract background" style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 50%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuA0Fqj6JlCGJldimDIGhWW3_2IoLQOArc-X9Q1OJI-oSIAD9hZpX8R1Z1GruEUs5JXiVdau08Yndg7RfPfznxN4AjA80r14vLns53v1i1FLz2jhG4ohRwvOFFUToEZubsunGAbNwpV2nr5ceDqnwt6B7nQ_5ER2o6DGAfFJ-8AtjHezwvB31gZRhURhuEoEXrO_YsUDZef8gjONPflzxk8occ8672LS3tjAfRkwrr9wiIRznInmUSceHXnF5Fsw_xa_UlVjYw7P3ZQw");'>
-            <div class="flex flex-col p-6 md:p-10">
-            <span class="text-white/90 text-sm md:text-base font-medium tracking-wider uppercase mb-2">Techo Drill Innovation</span>
-            <h2 class="text-white tracking-tight text-[28px] md:text-4xl lg:text-5xl font-bold leading-tight max-w-2xl">Advanced Solutions for Modern Energy</h2>
+<style>
+    .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.revealed {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    .gold-shimmer-text {
+        background: linear-gradient(110deg, #c98b06 0%, #eca305 45%, #ffd966 55%, #eca305 70%, #c98b06 100%);
+        background-size: 250% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shimmer 3s ease-in-out infinite;
+    }
+    @keyframes shimmer {
+        0% { background-position: 100% 50%; }
+        50% { background-position: 0% 50%; }
+        100% { background-position: 100% 50%; }
+    }
+
+    .accent-line {
+        width: 60px; height: 3px;
+        background: linear-gradient(90deg, #eca305, transparent);
+        border-radius: 2px;
+    }
+    .accent-line-center {
+        width: 80px; height: 3px;
+        background: linear-gradient(90deg, transparent, #eca305, transparent);
+        border-radius: 2px; margin: 0 auto;
+    }
+
+    .glass-card {
+        background: rgba(22, 22, 22, 0.6);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .card-lift {
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+    }
+    .card-lift:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(236, 163, 5, 0.1);
+    }
+
+    .service-icon-ring {
+        background: linear-gradient(135deg, rgba(236,163,5,0.15), rgba(236,163,5,0.05));
+        border: 1px solid rgba(236,163,5,0.2);
+    }
+</style>
+
+<!-- Hero Section -->
+<section class="relative min-h-[65vh] md:min-h-[75vh] flex items-center overflow-hidden px-4 md:px-6">
+    <div class="absolute inset-0 z-0">
+        <div class="absolute inset-0 bg-gradient-to-r from-background-dark via-background-dark/95 to-background-dark/40 z-10"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-background-dark z-[5]"></div>
+        <img alt="Gold bars stacked in vault" class="w-full h-full object-cover opacity-50"
+             src="https://images.unsplash.com/photo-1610375461246-83df859d849d?w=1920&q=80" loading="eager"/>
+    </div>
+    <div class="relative z-20 max-w-7xl mx-auto w-full">
+        <div class="max-w-3xl space-y-6">
+            <div class="reveal inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs font-bold uppercase tracking-widest text-primary">
+                <span class="material-symbols-outlined text-sm">verified</span>
+                Premium Vault Services
+            </div>
+            <h1 class="reveal reveal-delay-1 text-3xl sm:text-5xl md:text-7xl font-extrabold leading-[1.1] tracking-tighter">
+                World-Class Gold
+                <span class="gold-shimmer-text italic">Investment Services</span>
+            </h1>
+            <p class="reveal reveal-delay-2 text-sm sm:text-base md:text-lg text-text-sec-dark max-w-xl leading-relaxed">
+                From buying your first gram to storing millions in insured vaults — Avalanch Metal provides end-to-end services for every stage of your gold investment journey.
+            </p>
+            <div class="reveal reveal-delay-3 flex flex-wrap gap-4 pt-2">
+                <a href="{% url 'register' %}" class="px-6 py-3 md:px-8 md:py-4 bg-primary text-background-dark font-extrabold rounded-xl text-sm md:text-lg shadow-[0_10px_30px_rgba(236,163,5,0.3)] hover:scale-105 transition-all duration-300">
+                    Open Free Account
+                </a>
+                <a href="{% url 'contact' %}" class="px-6 py-3 md:px-8 md:py-4 glass-card text-white font-bold rounded-xl text-sm md:text-lg hover:bg-white/10 transition-all duration-300 flex items-center gap-2">
+                    <span class="material-symbols-outlined">call</span>
+                    +44 7818 800130
+                </a>
+            </div>
         </div>
     </div>
+</section>
 
-    <!-- Headline -->
-    <div class="px-4 py-6 md:px-0">
-        <h2 class="text-text-main-light dark:text-text-main-dark tracking-tight text-2xl md:text-3xl font-bold leading-tight">Core Capabilities</h2>
-        <p class="text-text-sec-light dark:text-text-sec-dark text-sm md:text-base mt-2">Comprehensive oil & gas services designed for efficiency.</p>
+<!-- Core Services Section -->
+<section class="py-16 md:py-28">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+        <div class="text-center mb-16 reveal">
+            <h3 class="text-primary font-bold uppercase tracking-[0.2em] text-sm mb-4">What We Offer</h3>
+            <div class="accent-line-center mb-6"></div>
+            <h2 class="text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-text-main-dark">Complete Gold <br class="hidden sm:block"/>Investment Solutions</h2>
+            <p class="text-text-sec-dark mt-4 max-w-2xl mx-auto">Everything you need to buy, sell, store, and grow your gold holdings — all from one trusted platform.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Service 1: Buy Gold -->
+            <div class="reveal reveal-delay-1 group bg-surface-dark rounded-2xl p-8 border border-white/5 hover:border-primary/30 transition-all card-lift">
+                <div class="service-icon-ring w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-primary text-3xl">shopping_cart</span>
+                </div>
+                <h4 class="text-xl font-bold text-text-main-dark mb-3">Buy Physical Gold</h4>
+                <p class="text-sm text-text-sec-dark leading-relaxed mb-4">Purchase 99.99% pure gold bars and coins directly through our platform. Start from as little as 1 gram with real-time pricing and instant allocation.</p>
+                <ul class="space-y-2">
+                    <li class="flex items-center gap-2 text-sm text-text-sec-dark">
+                        <span class="material-symbols-outlined text-primary text-base">check_circle</span>
+                        LBMA-certified gold
+                    </li>
+                    <li class="flex items-center gap-2 text-sm text-text-sec-dark">
+                        <span class="material-symbols-outlined text-primary text-base">check_circle</span>
+                        Real-time market pricing
+                    </li>
+                    <li class="flex items-center gap-2 text-sm text-text-sec-dark">
+                        <span class="material-symbols-outlined text-primary text-base">check_circle</span>
+                        Fractional ownership from 1g
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Service 2: Vault Storage -->
+            <div class="reveal reveal-delay-2 group bg-surface-dark rounded-2xl p-8 border border-white/5 hover:border-primary/30 transition-all card-lift relative overflow-hidden">
+                <div class="absolute top-4 right-4">
+                    <span class="bg-primary/20 text-primary text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">Most Popular</span>
+                </div>
+                <div class="service-icon-ring w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-primary text-3xl">lock</span>
+                </div>
+                <h4 class="text-xl font-bold text-text-main-dark mb-3">Private Vault Storage</h4>
+                <p class="text-sm text-text-sec-dark leading-relaxed mb-4">Store your gold in LBMA-certified high-security vaults across London, Zurich, and Singapore. Fully insured by Lloyd's of London up to $500M.</p>
+                <ul class="space-y-2">
+                    <li class="flex items-center gap-2 text-sm text-text-sec-dark">
+                        <span class="material-symbols-outlined text-primary text-base">check_circle</span>
+                        24/7 armed security
+                    </li>
+                    <li class="flex items-center gap-2 text-sm text-text-sec-dark">
+                        <span class="material-symbols-outlined text-primary text-base">check_circle</span>
+                        Lloyd's of London insured
+                    </li>
+                    <li class="flex items-center gap-2 text-sm text-text-sec-dark">
+                        <span class="material-symbols-outlined text-primary text-base">check_circle</span>
+                        Quarterly independent audits
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Service 3: Sell & Liquidate -->
+            <div class="reveal reveal-delay-3 group bg-surface-dark rounded-2xl p-8 border border-white/5 hover:border-primary/30 transition-all card-lift">
+                <div class="service-icon-ring w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-primary text-3xl">currency_exchange</span>
+                </div>
+                <h4 class="text-xl font-bold text-text-main-dark mb-3">Sell & Liquidate</h4>
+                <p class="text-sm text-text-sec-dark leading-relaxed mb-4">Convert your gold back to cash instantly at live market prices. Funds are deposited directly to your bank account within 24–48 hours.</p>
+                <ul class="space-y-2">
+                    <li class="flex items-center gap-2 text-sm text-text-sec-dark">
+                        <span class="material-symbols-outlined text-primary text-base">check_circle</span>
+                        24/7 liquidity
+                    </li>
+                    <li class="flex items-center gap-2 text-sm text-text-sec-dark">
+                        <span class="material-symbols-outlined text-primary text-base">check_circle</span>
+                        Zero hidden fees
+                    </li>
+                    <li class="flex items-center gap-2 text-sm text-text-sec-dark">
+                        <span class="material-symbols-outlined text-primary text-base">check_circle</span>
+                        Fast bank transfer
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Service 4: Investment Plans -->
+            <div class="reveal reveal-delay-1 group bg-surface-dark rounded-2xl p-8 border border-white/5 hover:border-primary/30 transition-all card-lift">
+                <div class="service-icon-ring w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-primary text-3xl">trending_up</span>
+                </div>
+                <h4 class="text-xl font-bold text-text-main-dark mb-3">Gold Investment Plans</h4>
+                <p class="text-sm text-text-sec-dark leading-relaxed mb-4">Choose from expert-managed investment plans that generate daily returns backed by physical gold. From starter portfolios to premium allocations.</p>
+                <ul class="space-y-2">
+                    <li class="flex items-center gap-2 text-sm text-text-sec-dark">
+                        <span class="material-symbols-outlined text-primary text-base">check_circle</span>
+                        Daily profit generation
+                    </li>
+                    <li class="flex items-center gap-2 text-sm text-text-sec-dark">
+                        <span class="material-symbols-outlined text-primary text-base">check_circle</span>
+                        Multiple plan tiers
+                    </li>
+                    <li class="flex items-center gap-2 text-sm text-text-sec-dark">
+                        <span class="material-symbols-outlined text-primary text-base">check_circle</span>
+                        Backed by physical gold
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Service 5: Portfolio Management -->
+            <div class="reveal reveal-delay-2 group bg-surface-dark rounded-2xl p-8 border border-white/5 hover:border-primary/30 transition-all card-lift">
+                <div class="service-icon-ring w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-primary text-3xl">analytics</span>
+                </div>
+                <h4 class="text-xl font-bold text-text-main-dark mb-3">Portfolio Dashboard</h4>
+                <p class="text-sm text-text-sec-dark leading-relaxed mb-4">Track your entire gold portfolio in real-time with our advanced dashboard. Monitor holdings, returns, and market trends — all in one place.</p>
+                <ul class="space-y-2">
+                    <li class="flex items-center gap-2 text-sm text-text-sec-dark">
+                        <span class="material-symbols-outlined text-primary text-base">check_circle</span>
+                        Real-time tracking
+                    </li>
+                    <li class="flex items-center gap-2 text-sm text-text-sec-dark">
+                        <span class="material-symbols-outlined text-primary text-base">check_circle</span>
+                        Performance analytics
+                    </li>
+                    <li class="flex items-center gap-2 text-sm text-text-sec-dark">
+                        <span class="material-symbols-outlined text-primary text-base">check_circle</span>
+                        Transaction history
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Service 6: Referral Program -->
+            <div class="reveal reveal-delay-3 group bg-surface-dark rounded-2xl p-8 border border-white/5 hover:border-primary/30 transition-all card-lift">
+                <div class="service-icon-ring w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-primary text-3xl">group_add</span>
+                </div>
+                <h4 class="text-xl font-bold text-text-main-dark mb-3">Referral Program</h4>
+                <p class="text-sm text-text-sec-dark leading-relaxed mb-4">Earn rewards by introducing friends and family to Avalanch Metal. Get up to 5% commission on every investment made by your referrals.</p>
+                <ul class="space-y-2">
+                    <li class="flex items-center gap-2 text-sm text-text-sec-dark">
+                        <span class="material-symbols-outlined text-primary text-base">check_circle</span>
+                        Up to 5% commission
+                    </li>
+                    <li class="flex items-center gap-2 text-sm text-text-sec-dark">
+                        <span class="material-symbols-outlined text-primary text-base">check_circle</span>
+                        Unlimited referrals
+                    </li>
+                    <li class="flex items-center gap-2 text-sm text-text-sec-dark">
+                        <span class="material-symbols-outlined text-primary text-base">check_circle</span>
+                        Instant payouts
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
+</section>
 
-    <!-- Service Cards Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-4 md:px-0 pb-12">
-        <!-- Card 1 -->
-        <div class="flex flex-col rounded-xl bg-surface-light dark:bg-surface-dark shadow-sm border border-gray-100 dark:border-gray-800 overflow-hidden hover:shadow-md transition-shadow group">
-            <div class="relative h-48 w-full bg-center bg-cover transition-transform duration-500 group-hover:scale-105" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB8Ctg0RwoXJU3ff_Ne0J70o_Zhepgu7Gg8LfOYXO7WjYt_HJDeLP06GdCghr8bS9G_yVWpyv8QQ_hEyowJMF7k7ZuwtuZOvS8yTJ6Vd_bW4CCBcTdRu4cGw6sGqBZVZI3io8QF91oSu94x26JV73jL92ch-1xHHo34mIXl9q7b_BfjgMxtjjimNyG-kT230X32qs2vgxFH5ZFK1r42JBRJC23EpM0EIcoYgh5J75NlLfsJb6Be21FwNGp-tTcsIek80z9uBWWW6N2h");'>
-                    <div class="absolute top-3 right-3 bg-white/90 dark:bg-black/60 backdrop-blur-sm rounded-full p-2 flex items-center justify-center">
-                    <span class="material-symbols-outlined text-primary text-xl">oil_barrel</span>
+<!-- Vault Feature Highlight -->
+<section class="py-16 md:py-28 bg-white/[0.02]">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <!-- Image Side -->
+            <div class="reveal relative order-2 lg:order-1">
+                <div class="rounded-3xl overflow-hidden shadow-2xl border border-white/5">
+                    <img src="https://images.unsplash.com/photo-1504309092620-4d0ec726efa4?w=800&q=80"
+                         alt="Gold bars in high-security vault" class="w-full h-[350px] md:h-[480px] object-cover" loading="lazy">
+                </div>
+                <!-- Floating badge -->
+                <div class="absolute -bottom-6 -right-4 md:right-8 glass-card rounded-2xl p-5 shadow-2xl border border-primary/20">
+                    <p class="text-xs text-text-sec-dark uppercase font-bold tracking-widest mb-1">Insured Up To</p>
+                    <p class="text-3xl font-extrabold text-primary">$500M</p>
+                    <p class="text-xs text-text-sec-dark">Lloyd's of London</p>
                 </div>
             </div>
-            <div class="flex flex-col gap-3 p-4 bg-surface-light dark:bg-surface-dark relative z-10">
-                <div class="flex flex-col gap-1">
-                    <h3 class="text-text-main-light dark:text-text-main-dark text-lg font-bold">Drilling Operations</h3>
-                    <p class="text-text-sec-light dark:text-text-sec-dark text-sm line-clamp-3">Precision drilling for deep-water and onshore assets using state-of-the-art rig technology.</p>
+            <!-- Content Side -->
+            <div class="space-y-8 order-1 lg:order-2">
+                <div class="reveal">
+                    <h3 class="text-primary font-bold uppercase tracking-[0.2em] text-sm mb-3">Vault Storage</h3>
+                    <div class="accent-line mb-6"></div>
+                    <h2 class="text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-text-main-dark">Fort Knox Level <br class="hidden sm:block"/>Security</h2>
                 </div>
-                <a href="#" class="flex items-center gap-2 text-primary font-bold text-sm mt-2 hover:underline w-fit">
-                    Learn More <span class="material-symbols-outlined text-sm font-bold">arrow_forward</span>
-                </a>
-            </div>
-        </div>
-
-        <!-- Card 2 -->
-            <div class="flex flex-col rounded-xl bg-surface-light dark:bg-surface-dark shadow-sm border border-gray-100 dark:border-gray-800 overflow-hidden hover:shadow-md transition-shadow group">
-            <div class="relative h-48 w-full bg-center bg-cover transition-transform duration-500 group-hover:scale-105" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBtuFJYRNVlzDYhF0Ya_u39h-3ShJJBDQ3CpZi8_vric4ZnZ0hjZYbmkiH2CcFVk1CwWhfE1aoIb13--W3zqbSygNqUkgviH3i6GW1w8js6ntcVtT87IY9R1xHrLC7b5lJ42Fbp8xRTptHRnONXM_Voqnnul-xQGqKoZI-h2etb-CQgH8HMwpb0ZsVs-aAVWI8iDghjDnidD7gwt6meGOMMO8v3uElZakfq2NTvAWTVEJmnWtRqf8obzYNVK_JXfSu74_Ee_OvJUTsQ");'>
-                    <div class="absolute top-3 right-3 bg-white/90 dark:bg-black/60 backdrop-blur-sm rounded-full p-2 flex items-center justify-center">
-                    <span class="material-symbols-outlined text-primary text-xl">travel_explore</span>
-                </div>
-            </div>
-            <div class="flex flex-col gap-3 p-4 bg-surface-light dark:bg-surface-dark relative z-10">
-                <div class="flex flex-col gap-1">
-                    <h3 class="text-text-main-light dark:text-text-main-dark text-lg font-bold">Exploration Services</h3>
-                    <p class="text-text-sec-light dark:text-text-sec-dark text-sm line-clamp-3">Advanced seismic analysis and geological surveying to identify high-potential energy reserves.</p>
-                </div>
-                <a href="#" class="flex items-center gap-2 text-primary font-bold text-sm mt-2 hover:underline w-fit">
-                    Learn More <span class="material-symbols-outlined text-sm font-bold">arrow_forward</span>
-                </a>
-            </div>
-        </div>
-
-        <!-- Card 3 -->
-            <div class="flex flex-col rounded-xl bg-surface-light dark:bg-surface-dark shadow-sm border border-gray-100 dark:border-gray-800 overflow-hidden hover:shadow-md transition-shadow group">
-            <div class="relative h-48 w-full bg-center bg-cover transition-transform duration-500 group-hover:scale-105" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCZsxVhBFwXxzM245bElQXBsZ82cmyN3klTki8OSZEvomlCliBEpUsDXEl5YtIHSKi_WdsjGgWB3KmMqWPiDw1kVXjEZtiG7TtIAk9pI7xqUhZpt4Z9U6o6MyfWs5aTMBR3XZDqbdrHYHNYIKeewmA7ihL_Xpog8dnx4q5bK3iGD_BBC259ukA7zEASSVlsHFny4ibJ2xa5I1p1HEd9WMPsIyZ48J6BQ02K3eajHFT2-Rqv-HVubSseOMAAiua-6QMLAWT4Hybou932");'>
-                    <div class="absolute top-3 right-3 bg-white/90 dark:bg-black/60 backdrop-blur-sm rounded-full p-2 flex items-center justify-center">
-                    <span class="material-symbols-outlined text-primary text-xl">precision_manufacturing</span>
-                </div>
-            </div>
-            <div class="flex flex-col gap-3 p-4 bg-surface-light dark:bg-surface-dark relative z-10">
-                <div class="flex flex-col gap-1">
-                    <h3 class="text-text-main-light dark:text-text-main-dark text-lg font-bold">Production Optimization</h3>
-                    <p class="text-text-sec-light dark:text-text-sec-dark text-sm line-clamp-3">Maximizing extraction workflows to ensure peak output efficiency and highest safety standards.</p>
-                </div>
-                <a href="#" class="flex items-center gap-2 text-primary font-bold text-sm mt-2 hover:underline w-fit">
-                    Learn More <span class="material-symbols-outlined text-sm font-bold">arrow_forward</span>
-                </a>
-            </div>
-        </div>
-
-        <!-- Card 4 -->
-            <div class="flex flex-col rounded-xl bg-surface-light dark:bg-surface-dark shadow-sm border border-gray-100 dark:border-gray-800 overflow-hidden hover:shadow-md transition-shadow group">
-            <div class="relative h-48 w-full bg-center bg-cover transition-transform duration-500 group-hover:scale-105" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBlTm4egH9JaaqC2xhBIR2B8k_QAtYWg-4j6OjYu6pl260_SADJbt4vrwRCGKmmbyydWSgnF83fD9-qCeyPMkq4txGq-MtJYUrolf3uXHAqymIIX8QiWZbthX2AOTYo2RJ5z7afBinOtQn-7GYBXw9RZ8ZaHKOV0WtIPWze-4XKUD1Q3WCCscPKr-7CmZDGVED7Fz82qhdNdn0Kub1geJNHLrUaAhE51zx058V5lMBrNqL_92SgEgsHYXZ3H8DB-3y-1hw3k3Br-006");'>
-                    <div class="absolute top-3 right-3 bg-white/90 dark:bg-black/60 backdrop-blur-sm rounded-full p-2 flex items-center justify-center">
-                    <span class="material-symbols-outlined text-primary text-xl">local_shipping</span>
-                </div>
-            </div>
-            <div class="flex flex-col gap-3 p-4 bg-surface-light dark:bg-surface-dark relative z-10">
-                <div class="flex flex-col gap-1">
-                    <h3 class="text-text-main-light dark:text-text-main-dark text-lg font-bold">Sales & Logistics</h3>
-                    <p class="text-text-sec-light dark:text-text-sec-dark text-sm line-clamp-3">Global distribution network delivering crude and refined products to international markets.</p>
-                </div>
-                <a href="#" class="flex items-center gap-2 text-primary font-bold text-sm mt-2 hover:underline w-fit">
-                    Learn More <span class="material-symbols-outlined text-sm font-bold">arrow_forward</span>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- CTA Section -->
-    <div class="px-4 md:px-0 mb-12">
-        <div class="w-full rounded-2xl bg-gradient-to-r from-primary to-primary-dark p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl shadow-primary/20">
-            <div class="flex flex-col gap-4 text-center md:text-left">
-                <div class="inline-flex items-center justify-center md:justify-start gap-3">
-                        <div class="bg-white/20 p-3 rounded-full backdrop-blur-sm">
-                        <span class="material-symbols-outlined text-white text-3xl">engineering</span>
+                <p class="reveal reveal-delay-1 text-text-sec-dark leading-relaxed">
+                    Your gold is stored in the world's most secure LBMA-certified facilities. Every bar is individually serialized, physically allocated, and fully audited — giving you complete peace of mind.
+                </p>
+                <div class="reveal reveal-delay-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="flex items-start gap-4 p-4 bg-surface-dark rounded-xl border border-white/5">
+                        <span class="material-symbols-outlined text-primary text-2xl mt-0.5">verified</span>
+                        <div>
+                            <h5 class="font-bold text-text-main-dark text-sm">LBMA Certified</h5>
+                            <p class="text-xs text-text-sec-dark mt-1">Meets the highest international standards for gold storage</p>
+                        </div>
                     </div>
-                    <h3 class="text-white text-2xl md:text-3xl font-bold">Need a Customized Solution?</h3>
+                    <div class="flex items-start gap-4 p-4 bg-surface-dark rounded-xl border border-white/5">
+                        <span class="material-symbols-outlined text-primary text-2xl mt-0.5">security</span>
+                        <div>
+                            <h5 class="font-bold text-text-main-dark text-sm">Armed Guards 24/7</h5>
+                            <p class="text-xs text-text-sec-dark mt-1">Round-the-clock security with biometric access controls</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4 p-4 bg-surface-dark rounded-xl border border-white/5">
+                        <span class="material-symbols-outlined text-primary text-2xl mt-0.5">shield</span>
+                        <div>
+                            <h5 class="font-bold text-text-main-dark text-sm">Full Insurance</h5>
+                            <p class="text-xs text-text-sec-dark mt-1">Insured by Lloyd's of London up to $500M</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4 p-4 bg-surface-dark rounded-xl border border-white/5">
+                        <span class="material-symbols-outlined text-primary text-2xl mt-0.5">fact_check</span>
+                        <div>
+                            <h5 class="font-bold text-text-main-dark text-sm">Quarterly Audits</h5>
+                            <p class="text-xs text-text-sec-dark mt-1">Independent third-party verification every quarter</p>
+                        </div>
+                    </div>
                 </div>
-                <p class="text-white/90 text-sm md:text-lg max-w-lg">Contact our engineering team to discuss your project requirements and get a tailored proposal.</p>
             </div>
-            <button class="w-full md:w-auto bg-white text-primary font-bold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl hover:bg-gray-50 transition-all active:scale-95 whitespace-nowrap">
-                Request a Quote
-            </button>
         </div>
     </div>
+</section>
+
+<!-- How It Works Section -->
+<section class="py-16 md:py-28">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+        <div class="text-center mb-16 reveal">
+            <h3 class="text-primary font-bold uppercase tracking-[0.2em] text-sm mb-4">Simple Process</h3>
+            <div class="accent-line-center mb-6"></div>
+            <h2 class="text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-text-main-dark">Start Investing in <br class="hidden sm:block"/>4 Easy Steps</h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="reveal reveal-delay-1 text-center p-6 md:p-8 bg-surface-dark rounded-2xl border border-white/5 card-lift relative">
+                <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-primary text-background-dark font-extrabold text-sm flex items-center justify-center shadow-lg">1</div>
+                <span class="material-symbols-outlined text-primary text-4xl mb-4 block mt-2">person_add</span>
+                <h4 class="font-bold text-text-main-dark text-lg mb-2">Create Account</h4>
+                <p class="text-sm text-text-sec-dark">Sign up in under 5 minutes with basic ID verification</p>
+            </div>
+            <div class="reveal reveal-delay-2 text-center p-6 md:p-8 bg-surface-dark rounded-2xl border border-white/5 card-lift relative">
+                <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-primary text-background-dark font-extrabold text-sm flex items-center justify-center shadow-lg">2</div>
+                <span class="material-symbols-outlined text-primary text-4xl mb-4 block mt-2">account_balance_wallet</span>
+                <h4 class="font-bold text-text-main-dark text-lg mb-2">Fund Your Wallet</h4>
+                <p class="text-sm text-text-sec-dark">Deposit via bank transfer, crypto, or card payment</p>
+            </div>
+            <div class="reveal reveal-delay-3 text-center p-6 md:p-8 bg-surface-dark rounded-2xl border border-white/5 card-lift relative">
+                <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-primary text-background-dark font-extrabold text-sm flex items-center justify-center shadow-lg">3</div>
+                <span class="material-symbols-outlined text-primary text-4xl mb-4 block mt-2">shopping_cart</span>
+                <h4 class="font-bold text-text-main-dark text-lg mb-2">Buy Gold</h4>
+                <p class="text-sm text-text-sec-dark">Purchase gold at real-time prices or choose an investment plan</p>
+            </div>
+            <div class="reveal reveal-delay-4 text-center p-6 md:p-8 bg-surface-dark rounded-2xl border border-white/5 card-lift relative">
+                <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-primary text-background-dark font-extrabold text-sm flex items-center justify-center shadow-lg">4</div>
+                <span class="material-symbols-outlined text-primary text-4xl mb-4 block mt-2">savings</span>
+                <h4 class="font-bold text-text-main-dark text-lg mb-2">Earn & Grow</h4>
+                <p class="text-sm text-text-sec-dark">Watch your returns grow daily — withdraw anytime you want</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Vault Locations -->
+<section class="py-16 md:py-28 bg-white/[0.02]">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+        <div class="text-center mb-16 reveal">
+            <h3 class="text-primary font-bold uppercase tracking-[0.2em] text-sm mb-4">Global Presence</h3>
+            <div class="accent-line-center mb-6"></div>
+            <h2 class="text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-text-main-dark">Secure Vault Locations</h2>
+            <p class="text-text-sec-dark mt-4 max-w-2xl mx-auto">Your gold is stored in the world's most secure facilities, strategically located across major financial centres.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="reveal reveal-delay-1 group relative rounded-2xl overflow-hidden min-h-[280px] card-lift">
+                <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=600&q=80"
+                     alt="London skyline" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/60 to-transparent"></div>
+                <div class="relative z-10 flex flex-col justify-end h-full p-6">
+                    <div class="w-10 h-10 rounded-full bg-primary/20 text-primary flex items-center justify-center mb-3">
+                        <span class="material-symbols-outlined">location_city</span>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-1">London, UK</h4>
+                    <p class="text-sm text-text-sec-dark">Headquarters & primary vault — Bank of England district, fully LBMA certified</p>
+                </div>
+            </div>
+            <div class="reveal reveal-delay-2 group relative rounded-2xl overflow-hidden min-h-[280px] card-lift">
+                <img src="https://images.unsplash.com/photo-1586348943529-beaae6c28db9?w=600&q=80"
+                     alt="Zurich cityscape" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/60 to-transparent"></div>
+                <div class="relative z-10 flex flex-col justify-end h-full p-6">
+                    <div class="w-10 h-10 rounded-full bg-primary/20 text-primary flex items-center justify-center mb-3">
+                        <span class="material-symbols-outlined">location_city</span>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-1">Zurich, Switzerland</h4>
+                    <p class="text-sm text-text-sec-dark">Swiss-grade security — Europe's most trusted precious metals storage centre</p>
+                </div>
+            </div>
+            <div class="reveal reveal-delay-3 group relative rounded-2xl overflow-hidden min-h-[280px] card-lift">
+                <img src="https://images.unsplash.com/photo-1617305855058-336d24456869?w=600&q=80"
+                     alt="Singapore skyline" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/60 to-transparent"></div>
+                <div class="relative z-10 flex flex-col justify-end h-full p-6">
+                    <div class="w-10 h-10 rounded-full bg-primary/20 text-primary flex items-center justify-center mb-3">
+                        <span class="material-symbols-outlined">location_city</span>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-1">Singapore</h4>
+                    <p class="text-sm text-text-sec-dark">Asia-Pacific hub — Freeport vault with tax-exempt storage</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-24">
+    <div class="relative bg-gradient-to-br from-[#1e1c10] to-background-dark rounded-2xl md:rounded-[2rem] p-8 md:p-12 lg:p-20 text-center shadow-[0_20px_60px_rgba(236,163,5,0.15)] overflow-hidden border border-primary/20">
+        <div class="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
+        <div class="relative z-10 max-w-2xl mx-auto space-y-6">
+            <span class="material-symbols-outlined text-primary text-6xl mb-4 block mx-auto opacity-40">diamond</span>
+            <h2 class="text-2xl sm:text-4xl md:text-5xl font-black tracking-tight text-white">Ready to Secure <br/>Your Wealth in Gold?</h2>
+            <p class="text-sm sm:text-base md:text-lg text-text-sec-dark max-w-xl mx-auto">Join over 120,000 investors who trust Avalanch Metal with their gold. Account setup is free and takes less than 5 minutes.</p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                <a href="{% url 'register' %}" class="bg-primary text-background-dark px-8 py-4 md:px-10 md:py-5 rounded-xl font-extrabold text-base md:text-xl shadow-2xl hover:scale-105 transition-all duration-300">
+                    Get Started Free
+                </a>
+                <a href="{% url 'contact' %}" class="text-white font-bold flex items-center gap-2 hover:text-primary transition-colors text-sm md:text-base">
+                    <span class="material-symbols-outlined">call</span>
+                    Speak with an Expert
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Scroll Reveal Script -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+    revealElements.forEach(el => observer.observe(el));
+});
+</script>
 {% endblock %}

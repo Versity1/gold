@@ -1,154 +1,378 @@
 {% extends 'base_front.html' %}
+{% load static %}
 
-{% block title %}Contact Us - Techo Drill Innovation{% endblock %}
+{% block title %}Contact Us | Avalanch Metal — Gold Investment Support{% endblock %}
 
 {% block content %}
-    <!-- Hero Section -->
-    <div class="relative bg-cover bg-center flex flex-col justify-end overflow-hidden h-[300px] md:h-[400px] md:rounded-b-2xl" data-alt="Oil rig platform in the ocean at sunset with industrial equipment" style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 50%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuCqQrOBg680BmCxf2W_9Bqnoivmsu13_7KpIez7tGvPiTeqQuLYoIssiPVoMt1jWffMSvGGCltzivMTHglolvF3QB-sr1CXPa1h7fVYJa0SJHPLCfSjlviFGj7U1s4ef9VueZ9myr0bTVKqFQPR6kiklwcmZBJMUFoYjJUnffoy4_0cqK_opB3CcfM0wCYzuN-oZzwGNf3Pv2DMMD0T79E38ZfeLDr_MuTPRF0-Aq7AAp5lWMUBlykSJwF3-4jXD738Q0q7PrAGoMz7");'>
-        <div class="flex flex-col p-6 md:p-10 z-10 max-w-4xl">
-            <span class="inline-block px-3 py-1 mb-2 text-xs font-bold tracking-wider text-white uppercase bg-primary rounded-full w-fit">Techo Drill Innovation</span>
-            <h1 class="text-white font-display text-3xl md:text-5xl font-bold leading-tight">Powering the Future of Energy.</h1>
-            <p class="text-white/90 text-sm md:text-lg mt-2 max-w-xl">Let's connect and build together. Reach out to our expert team for inquiries and partnerships.</p>
+<style>
+    .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.revealed {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    .gold-shimmer-text {
+        background: linear-gradient(110deg, #c98b06 0%, #eca305 45%, #ffd966 55%, #eca305 70%, #c98b06 100%);
+        background-size: 250% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shimmer 3s ease-in-out infinite;
+    }
+    @keyframes shimmer {
+        0% { background-position: 100% 50%; }
+        50% { background-position: 0% 50%; }
+        100% { background-position: 100% 50%; }
+    }
+
+    .accent-line {
+        width: 60px; height: 3px;
+        background: linear-gradient(90deg, #eca305, transparent);
+        border-radius: 2px;
+    }
+    .accent-line-center {
+        width: 80px; height: 3px;
+        background: linear-gradient(90deg, transparent, #eca305, transparent);
+        border-radius: 2px; margin: 0 auto;
+    }
+
+    .glass-card {
+        background: rgba(22, 22, 22, 0.6);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .card-lift {
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+    }
+    .card-lift:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(236, 163, 5, 0.1);
+    }
+
+    .contact-input {
+        width: 100%;
+        height: 48px;
+        border-radius: 12px;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.08);
+        color: #fff;
+        padding: 0 16px;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        outline: none;
+    }
+    .contact-input:focus {
+        border-color: #eca305;
+        background: rgba(236,163,5,0.05);
+        box-shadow: 0 0 0 3px rgba(236,163,5,0.1);
+    }
+    .contact-input::placeholder {
+        color: rgba(255,255,255,0.3);
+    }
+    textarea.contact-input {
+        height: auto;
+        padding: 14px 16px;
+        resize: none;
+    }
+    select.contact-input {
+        appearance: none;
+        cursor: pointer;
+    }
+</style>
+
+<!-- Hero Section -->
+<section class="relative min-h-[55vh] md:min-h-[65vh] flex items-center overflow-hidden px-4 md:px-6">
+    <div class="absolute inset-0 z-0">
+        <div class="absolute inset-0 bg-gradient-to-r from-background-dark via-background-dark/95 to-background-dark/50 z-10"></div>
+        <img alt="Gold bars in secure vault" class="w-full h-full object-cover opacity-40"
+             src="https://images.unsplash.com/photo-1543699565-003b8adda5fc?w=1920&q=80" loading="eager"/>
+    </div>
+    <div class="relative z-20 max-w-7xl mx-auto w-full">
+        <div class="max-w-2xl space-y-5">
+            <div class="reveal inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs font-bold uppercase tracking-widest text-primary">
+                <span class="material-symbols-outlined text-sm">support_agent</span>
+                24/7 Expert Support
+            </div>
+            <h1 class="reveal reveal-delay-1 text-3xl sm:text-5xl md:text-6xl font-extrabold leading-[1.1] tracking-tighter">
+                Get in <span class="gold-shimmer-text italic">Touch</span>
+            </h1>
+            <p class="reveal reveal-delay-2 text-sm sm:text-base md:text-lg text-text-sec-dark max-w-lg leading-relaxed">
+                Have questions about gold investment? Our specialist team is ready to help you start your journey to financial security.
+            </p>
         </div>
     </div>
+</section>
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 p-4 md:p-8 -mt-8 relative z-20">
-        <!-- Left Column: Contact Form -->
-        <div class="lg:col-span-2 bg-surface-light dark:bg-surface-dark rounded-2xl shadow-lg border border-gray-100 dark:border-gray-800 p-6 md:p-8">
-            <h3 class="text-xl md:text-2xl font-bold text-text-main-light dark:text-text-main-dark mb-2">Send us a message</h3>
-            <p class="text-text-sec-light dark:text-text-sec-dark mb-6">Fill out the form below and our team will get back to you within 24 hours.</p>
-            
-            <form class="space-y-5">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <!-- Full Name -->
-                    <div class="space-y-1.5">
-                        <label class="text-sm font-medium text-text-main-light dark:text-text-main-dark" for="name">Full Name</label>
-                        <input class="w-full h-12 rounded-lg bg-gray-50 dark:bg-background-dark border-transparent focus:border-primary focus:bg-white dark:focus:bg-surface-dark focus:ring-0 text-text-main-light dark:text-text-main-dark placeholder-text-sec-light px-4 transition-all" id="name" placeholder="Ex. John Doe" type="text"/>
-                    </div>
-                    <!-- Company Name -->
-                    <div class="space-y-1.5">
-                        <label class="text-sm font-medium text-text-main-light dark:text-text-main-dark" for="company">Company Name</label>
-                        <input class="w-full h-12 rounded-lg bg-gray-50 dark:bg-background-dark border-transparent focus:border-primary focus:bg-white dark:focus:bg-surface-dark focus:ring-0 text-text-main-light dark:text-text-main-dark placeholder-text-sec-light px-4 transition-all" id="company" placeholder="Ex. Global Energy Corp" type="text"/>
-                    </div>
+<!-- Quick Contact Cards -->
+<section class="relative z-20 -mt-10 md:-mt-16 px-4 md:px-6">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
+            <a href="tel:+447818800130" class="reveal reveal-delay-1 flex items-center gap-4 p-5 md:p-6 bg-surface-dark rounded-2xl border border-white/5 card-lift group">
+                <div class="w-12 h-12 rounded-xl bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center shrink-0 transition-colors">
+                    <span class="material-symbols-outlined text-primary text-2xl">call</span>
                 </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <!-- Email -->
-                    <div class="space-y-1.5">
-                        <label class="text-sm font-medium text-text-main-light dark:text-text-main-dark" for="email">Email Address</label>
-                        <div class="relative">
-                            <input class="w-full h-12 rounded-lg bg-gray-50 dark:bg-background-dark border-transparent focus:border-primary focus:bg-white dark:focus:bg-surface-dark focus:ring-0 text-text-main-light dark:text-text-main-dark placeholder-text-sec-light px-4 transition-all" id="email" placeholder="john@company.com" type="email"/>
-                            <span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-text-sec-light text-[20px]">alternate_email</span>
-                        </div>
-                    </div>
-                        <!-- Inquiry Type -->
-                        <div class="space-y-1.5">
-                        <label class="text-sm font-medium text-text-main-light dark:text-text-main-dark" for="subject">Inquiry Type</label>
-                        <div class="relative">
-                            <select class="w-full h-12 rounded-lg bg-gray-50 dark:bg-background-dark border-transparent focus:border-primary focus:bg-white dark:focus:bg-surface-dark focus:ring-0 text-text-main-light dark:text-text-main-dark px-4 appearance-none transition-all" id="subject">
-                                <option>General Inquiry</option>
-                                <option>Drilling Services</option>
-                                <option>Equipment Sales</option>
-                                <option>Partnership</option>
-                            </select>
-                            <span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-text-sec-light text-[20px] pointer-events-none">expand_more</span>
-                        </div>
-                    </div>
+                <div>
+                    <p class="text-xs text-text-sec-dark font-bold uppercase tracking-widest mb-1">Call Us</p>
+                    <p class="text-sm font-bold text-text-main-dark">+44 7818 800130</p>
                 </div>
-
-                <!-- Message -->
-                <div class="space-y-1.5">
-                    <label class="text-sm font-medium text-text-main-light dark:text-text-main-dark" for="message">Message</label>
-                    <textarea class="w-full rounded-lg bg-gray-50 dark:bg-background-dark border-transparent focus:border-primary focus:bg-white dark:focus:bg-surface-dark focus:ring-0 text-text-main-light dark:text-text-main-dark placeholder-text-sec-light p-4 resize-none transition-all" id="message" placeholder="How can we help you today?" rows="4"></textarea>
+            </a>
+            <a href="mailto:support@avalanchmetal.com" class="reveal reveal-delay-2 flex items-center gap-4 p-5 md:p-6 bg-surface-dark rounded-2xl border border-white/5 card-lift group">
+                <div class="w-12 h-12 rounded-xl bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center shrink-0 transition-colors">
+                    <span class="material-symbols-outlined text-primary text-2xl">mail</span>
                 </div>
-
-                <!-- Submit Button -->
-                <button class="w-full md:w-auto md:px-8 h-12 bg-primary hover:bg-primary-dark text-white font-bold rounded-lg shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 mt-4" type="button">
-                    <span>Send Message</span>
-                    <span class="material-symbols-outlined text-[20px]">send</span>
-                </button>
-            </form>
+                <div>
+                    <p class="text-xs text-text-sec-dark font-bold uppercase tracking-widest mb-1">Email Us</p>
+                    <p class="text-sm font-bold text-text-main-dark">support@avalanchmetal.com</p>
+                </div>
+            </a>
+            <div class="reveal reveal-delay-3 flex items-center gap-4 p-5 md:p-6 bg-surface-dark rounded-2xl border border-white/5 card-lift group">
+                <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-primary text-2xl">location_on</span>
+                </div>
+                <div>
+                    <p class="text-xs text-text-sec-dark font-bold uppercase tracking-widest mb-1">Visit Us</p>
+                    <p class="text-sm font-bold text-text-main-dark">London, United Kingdom</p>
+                </div>
+            </div>
         </div>
+    </div>
+</section>
 
-        <!-- Right Column: Contact Info & Map -->
-        <div class="lg:col-span-1 flex flex-col gap-6">
-                <!-- Quick Contact Grid -->
-                <div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-md p-6 grid grid-cols-3 gap-4 border border-gray-100 dark:border-gray-800">
-                <button class="flex flex-col items-center gap-2 group">
-                    <div class="rounded-full bg-primary/10 group-hover:bg-primary/20 p-3 transition-colors text-primary">
-                        <span class="material-symbols-outlined text-[24px]">call</span>
-                    </div>
-                    <p class="text-text-main-light dark:text-text-main-dark text-xs font-medium">+447935289492</p>
-                </button>
-                <button class="flex flex-col items-center gap-2 group">
-                    <div class="rounded-full bg-primary/10 group-hover:bg-primary/20 p-3 transition-colors text-primary">
-                        <span class="material-symbols-outlined text-[24px]">mail</span>
-                    </div>
-                    <p class="text-text-main-light dark:text-text-main-dark text-xs font-medium">info@techodrill.com</p>
-                </button>
-                <button class="flex flex-col items-center gap-2 group">
-                    <div class="rounded-full bg-primary/10 group-hover:bg-primary/20 p-3 transition-colors text-primary">
-                        <span class="material-symbols-outlined text-[24px]">location_on</span>
-                    </div>
-                    <p class="text-text-main-light dark:text-text-main-dark text-xs font-medium">Techo Drill Innovation Tower, Level 42
-Business Bay, Dubai, UAE</p>
-                </button>
+<!-- Contact Form + Office Details -->
+<section class="py-16 md:py-28">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+        <div class="grid lg:grid-cols-5 gap-8 md:gap-12">
+            <!-- Left: Contact Form (3 cols) -->
+            <div class="lg:col-span-3 reveal">
+                <div class="bg-surface-dark rounded-2xl p-6 md:p-10 border border-white/5">
+                    <h3 class="text-primary font-bold uppercase tracking-[0.2em] text-sm mb-2">Send a Message</h3>
+                    <div class="accent-line mb-4"></div>
+                    <h2 class="text-xl md:text-3xl font-extrabold text-text-main-dark mb-2">We'd Love to Hear From You</h2>
+                    <p class="text-sm text-text-sec-dark mb-8">Fill out the form below and our team will respond within 24 hours.</p>
+
+                    <form class="space-y-5">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div class="space-y-2">
+                                <label class="text-sm font-bold text-text-main-dark" for="fullName">Full Name</label>
+                                <input class="contact-input" id="fullName" placeholder="e.g. James Williams" type="text"/>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-sm font-bold text-text-main-dark" for="email">Email Address</label>
+                                <input class="contact-input" id="email" placeholder="james@example.com" type="email"/>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div class="space-y-2">
+                                <label class="text-sm font-bold text-text-main-dark" for="phone">Phone Number</label>
+                                <input class="contact-input" id="phone" placeholder="+44 7XXX XXXXXX" type="tel"/>
+                            </div>
+                            <div class="space-y-2 relative">
+                                <label class="text-sm font-bold text-text-main-dark" for="inquiry">Inquiry Type</label>
+                                <select class="contact-input" id="inquiry">
+                                    <option value="">Select an option</option>
+                                    <option>Gold Investment</option>
+                                    <option>Vault Storage</option>
+                                    <option>Account Support</option>
+                                    <option>Withdrawal Enquiry</option>
+                                    <option>KYC Verification</option>
+                                    <option>Partnership</option>
+                                    <option>Other</option>
+                                </select>
+                                <span class="material-symbols-outlined absolute right-4 bottom-3 text-text-sec-dark text-lg pointer-events-none">expand_more</span>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="text-sm font-bold text-text-main-dark" for="message">Message</label>
+                            <textarea class="contact-input" id="message" placeholder="How can we help you today?" rows="5"></textarea>
+                        </div>
+
+                        <button type="button" class="w-full md:w-auto px-8 py-3.5 bg-primary text-background-dark font-extrabold rounded-xl text-sm md:text-base shadow-[0_10px_30px_rgba(236,163,5,0.3)] hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2">
+                            <span>Send Message</span>
+                            <span class="material-symbols-outlined text-lg">send</span>
+                        </button>
+                    </form>
+                </div>
             </div>
 
-            <!-- Company Info & Map -->
-            <div class="bg-surface-light dark:bg-surface-dark rounded-xl overflow-hidden shadow-md border border-gray-100 dark:border-gray-800">
-                    <div class="p-5 border-b border-gray-100 dark:border-gray-800">
-                        <h3 class="text-lg font-bold text-text-main-light dark:text-text-main-dark">Our Headquarters</h3>
+            <!-- Right: Office Info (2 cols) -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- UK Headquarters -->
+                <div class="reveal reveal-delay-1 bg-surface-dark rounded-2xl overflow-hidden border border-white/5">
+                    <!-- Map embed -->
+                    <div class="w-full h-[200px] relative">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.5420750701847!2d-0.08878858422726899!3d51.51339297963578!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761b5488a518c5%3A0xb30c85e838a62b3!2sBank%20of%20England!5e0!3m2!1sen!2suk!4v1700000000000!5m2!1sen!2suk"
+                            width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade" class="opacity-80"></iframe>
                     </div>
-
-                <!-- Map Preview -->
-                <div class="w-full h-[200px] bg-gray-200 relative group cursor-pointer">
-                    <div class="absolute inset-0 bg-cover bg-center opacity-80 transition-opacity group-hover:opacity-60" data-alt="Map view of Dubai city center showing streets and location marker" data-location="Dubai" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAteFalrmSdnyAEp13x40qMrGZukOJcbxtDVLEwe0_Xn3twe9eSKdNjxxHkeE6iVYz9m6AppOZzhdD9O4krUb5SF1LPse5_0TqP_N1V3K3lC4h5vv1OB7o30wtPp5S1pXnWLbyuvft8emhQgEdP4toZM8neoA0XzL7zSXAiIuIZeTCSa7xUyEjCB2meYPVI7G_a6-BdSkbHx9piu-HaqzqGjJBwU-IJ2UFX9gJDuhRYr6FYe7sevwHR52lz3wqkomYR1rblTJzJyRHM");'></div>
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <div class="bg-surface-light dark:bg-surface-dark p-3 rounded-full shadow-lg transform group-hover:-translate-y-1 transition-transform">
-                            <span class="material-symbols-outlined text-primary text-[24px]">near_me</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="p-5">
-                    <div class="flex items-start gap-4 mb-4">
-                        <div class="mt-1 bg-primary/10 p-2 rounded-full shrink-0 text-primary">
-                            <span class="material-symbols-outlined text-[20px]">business</span>
-                        </div>
+                    <div class="p-6 space-y-4">
                         <div>
-                            <h4 class="font-bold text-text-main-light dark:text-text-main-dark text-base">Techo Drill Innovation HQ</h4>
-                            <p class="text-text-sec-light dark:text-text-sec-dark text-sm mt-1 leading-relaxed">
-                                Jumeirah Lakes Towers (JLT), Cluster X<br/>
-                                Dubai, United Arab Emirates
+                            <h4 class="font-bold text-text-main-dark text-lg flex items-center gap-2">
+                                <span class="material-symbols-outlined text-primary">apartment</span>
+                                UK Headquarters
+                            </h4>
+                            <p class="text-sm text-text-sec-dark mt-2 leading-relaxed">
+                                Avalanch Metal Ltd<br/>
+                                Canary Wharf, London<br/>
+                                United Kingdom, E14 5AB
                             </p>
                         </div>
+                        <div class="border-t border-white/5 pt-4 space-y-3">
+                            <a href="tel:+447818800130" class="flex items-center gap-3 text-sm text-text-sec-dark hover:text-primary transition-colors">
+                                <span class="material-symbols-outlined text-primary text-lg">call</span>
+                                +44 7818 800130
+                            </a>
+                            <a href="mailto:support@avalanchmetal.com" class="flex items-center gap-3 text-sm text-text-sec-dark hover:text-primary transition-colors">
+                                <span class="material-symbols-outlined text-primary text-lg">mail</span>
+                                support@avalanchmetal.com
+                            </a>
+                        </div>
                     </div>
-                    <div class="flex flex-col gap-3 border-t border-gray-100 dark:border-gray-800 pt-4">
-                        <a class="flex items-center gap-3 text-sm text-text-main-light dark:text-text-main-dark hover:text-primary transition-colors" href="tel:+447935289492">
-                            <span class="material-symbols-outlined text-text-sec-light text-[18px]">call</span>
-                            +44 7935 289492
+                </div>
+
+                <!-- Operating Hours -->
+                <div class="reveal reveal-delay-2 bg-surface-dark rounded-2xl p-6 border border-white/5">
+                    <h4 class="font-bold text-text-main-dark text-lg flex items-center gap-2 mb-4">
+                        <span class="material-symbols-outlined text-primary">schedule</span>
+                        Operating Hours
+                    </h4>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center text-sm">
+                            <span class="text-text-sec-dark">Monday – Friday</span>
+                            <span class="font-bold text-text-main-dark">9:00 AM – 6:00 PM (GMT)</span>
+                        </div>
+                        <div class="border-t border-white/5"></div>
+                        <div class="flex justify-between items-center text-sm">
+                            <span class="text-text-sec-dark">Saturday</span>
+                            <span class="font-bold text-text-main-dark">10:00 AM – 2:00 PM (GMT)</span>
+                        </div>
+                        <div class="border-t border-white/5"></div>
+                        <div class="flex justify-between items-center text-sm">
+                            <span class="text-text-sec-dark">Sunday</span>
+                            <span class="font-bold text-text-sec-dark">Closed</span>
+                        </div>
+                        <div class="border-t border-white/5"></div>
+                        <div class="flex justify-between items-center text-sm">
+                            <span class="text-text-sec-dark">Online Support</span>
+                            <span class="font-bold text-primary">24/7 Available</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="reveal reveal-delay-3 bg-surface-dark rounded-2xl p-6 border border-white/5">
+                    <h4 class="font-bold text-text-main-dark text-lg flex items-center gap-2 mb-4">
+                        <span class="material-symbols-outlined text-primary">help</span>
+                        Quick Help
+                    </h4>
+                    <div class="space-y-3">
+                        <a href="{% url 'register' %}" class="flex items-center justify-between p-3 rounded-xl hover:bg-white/5 transition-colors group">
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-primary text-lg">person_add</span>
+                                <span class="text-sm text-text-sec-dark group-hover:text-text-main-dark transition-colors">Create an Account</span>
+                            </div>
+                            <span class="material-symbols-outlined text-text-sec-dark text-sm">arrow_forward</span>
                         </a>
-                        <a class="flex items-center gap-3 text-sm text-text-main-light dark:text-text-main-dark hover:text-primary transition-colors" href="mailto:info@techodrill.com">
-                            <span class="material-symbols-outlined text-text-sec-light text-[18px]">mail</span>
-                            info@techodrill.com
+                        <a href="{% url 'login' %}" class="flex items-center justify-between p-3 rounded-xl hover:bg-white/5 transition-colors group">
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-primary text-lg">login</span>
+                                <span class="text-sm text-text-sec-dark group-hover:text-text-main-dark transition-colors">Log In to Dashboard</span>
+                            </div>
+                            <span class="material-symbols-outlined text-text-sec-dark text-sm">arrow_forward</span>
+                        </a>
+                        <a href="{% url 'services' %}" class="flex items-center justify-between p-3 rounded-xl hover:bg-white/5 transition-colors group">
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-primary text-lg">diamond</span>
+                                <span class="text-sm text-text-sec-dark group-hover:text-text-main-dark transition-colors">View Our Services</span>
+                            </div>
+                            <span class="material-symbols-outlined text-text-sec-dark text-sm">arrow_forward</span>
+                        </a>
+                        <a href="{% url 'about' %}" class="flex items-center justify-between p-3 rounded-xl hover:bg-white/5 transition-colors group">
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-primary text-lg">info</span>
+                                <span class="text-sm text-text-sec-dark group-hover:text-text-main-dark transition-colors">About Avalanch Metal</span>
+                            </div>
+                            <span class="material-symbols-outlined text-text-sec-dark text-sm">arrow_forward</span>
                         </a>
                     </div>
                 </div>
             </div>
-
-            <!-- Footer Socials -->
-            <div class="flex justify-center gap-6 py-4">
-                <a class="text-gray-400 hover:text-primary transition-colors" href="#">
-                    <span class="sr-only">LinkedIn</span>
-                    <svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24"><path clip-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" fill-rule="evenodd"></path></svg>
-                </a>
-                <a class="text-gray-400 hover:text-primary transition-colors" href="#">
-                    <span class="sr-only">Twitter</span>
-                    <svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg>
-                </a>
-            </div>
-            <p class="text-center text-xs text-gray-400">© 2024 Techo Drill Innovation. All rights reserved.</p>
         </div>
     </div>
+</section>
+
+<!-- FAQ Preview -->
+<section class="py-16 md:py-28 bg-white/[0.02]">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+        <div class="text-center mb-12 reveal">
+            <h3 class="text-primary font-bold uppercase tracking-[0.2em] text-sm mb-4">Common Questions</h3>
+            <div class="accent-line-center mb-6"></div>
+            <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-text-main-dark">Frequently Asked Questions</h2>
+        </div>
+        <div class="space-y-4">
+            <details class="reveal reveal-delay-1 group bg-surface-dark rounded-2xl border border-white/5 overflow-hidden">
+                <summary class="flex items-center justify-between p-5 md:p-6 cursor-pointer list-none">
+                    <span class="font-bold text-text-main-dark text-sm md:text-base pr-4">How do I start investing in gold with Avalanch Metal?</span>
+                    <span class="material-symbols-outlined text-primary shrink-0 group-open:rotate-180 transition-transform">expand_more</span>
+                </summary>
+                <div class="px-5 md:px-6 pb-5 md:pb-6 text-sm text-text-sec-dark leading-relaxed">
+                    Simply create a free account, complete your KYC verification, and deposit funds into your wallet. You can then purchase gold at live market prices or choose one of our managed investment plans. The entire process takes less than 10 minutes.
+                </div>
+            </details>
+            <details class="reveal reveal-delay-2 group bg-surface-dark rounded-2xl border border-white/5 overflow-hidden">
+                <summary class="flex items-center justify-between p-5 md:p-6 cursor-pointer list-none">
+                    <span class="font-bold text-text-main-dark text-sm md:text-base pr-4">Is my gold physically stored and insured?</span>
+                    <span class="material-symbols-outlined text-primary shrink-0 group-open:rotate-180 transition-transform">expand_more</span>
+                </summary>
+                <div class="px-5 md:px-6 pb-5 md:pb-6 text-sm text-text-sec-dark leading-relaxed">
+                    Yes. Every gram of gold you purchase is physically allocated and stored in LBMA-certified vaults in London, Zurich, or Singapore. Your holdings are fully insured by Lloyd's of London up to $500 million and are independently audited every quarter.
+                </div>
+            </details>
+            <details class="reveal reveal-delay-3 group bg-surface-dark rounded-2xl border border-white/5 overflow-hidden">
+                <summary class="flex items-center justify-between p-5 md:p-6 cursor-pointer list-none">
+                    <span class="font-bold text-text-main-dark text-sm md:text-base pr-4">How quickly can I withdraw my funds?</span>
+                    <span class="material-symbols-outlined text-primary shrink-0 group-open:rotate-180 transition-transform">expand_more</span>
+                </summary>
+                <div class="px-5 md:px-6 pb-5 md:pb-6 text-sm text-text-sec-dark leading-relaxed">
+                    You can request a withdrawal at any time. Standard processing takes 24–48 hours for bank transfers. Your gold can be liquidated instantly at live market prices with zero hidden fees.
+                </div>
+            </details>
+            <details class="reveal group bg-surface-dark rounded-2xl border border-white/5 overflow-hidden">
+                <summary class="flex items-center justify-between p-5 md:p-6 cursor-pointer list-none">
+                    <span class="font-bold text-text-main-dark text-sm md:text-base pr-4">What is the minimum investment amount?</span>
+                    <span class="material-symbols-outlined text-primary shrink-0 group-open:rotate-180 transition-transform">expand_more</span>
+                </summary>
+                <div class="px-5 md:px-6 pb-5 md:pb-6 text-sm text-text-sec-dark leading-relaxed">
+                    You can start investing with as little as $50. We offer fractional gold ownership from 1 gram, making precious metal investment accessible to everyone regardless of budget.
+                </div>
+            </details>
+        </div>
+    </div>
+</section>
+
+<!-- Scroll Reveal Script -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+    revealElements.forEach(el => observer.observe(el));
+});
+</script>
 {% endblock %}

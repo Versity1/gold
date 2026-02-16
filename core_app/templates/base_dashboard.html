@@ -59,26 +59,28 @@
 <body class="bg-background-dark text-text-main-dark font-display">
     <!-- Top Navigation / Ticker -->
     <header class="fixed top-0 left-0 right-0 z-50 bg-background-dark/80 backdrop-blur-md border-b border-white/10">
-        <div class="flex items-center justify-between px-4 md:px-6 py-3">
-            <div class="flex items-center gap-4 md:gap-8">
-                <a href="{% url 'home' %}" class="flex items-center gap-3">
-                    <img src="{% static 'images/logo.png' %}" alt="Avalanch Metal" class="h-16 w-auto">
-                </a>
-                <!-- Spot Price Ticker -->
-                <div class="hidden lg:flex items-center gap-6 overflow-hidden max-w-2xl whitespace-nowrap border-l border-white/10 pl-8">
-                    <div class="flex items-center gap-2">
-                        <span class="text-xs uppercase font-bold text-slate-500">Gold (XAU/USD)</span>
-                        <span class="text-primary font-mono font-bold">$2,350.40</span>
-                        <span class="text-emerald-500 text-xs font-bold">+0.84%</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <span class="text-xs uppercase font-bold text-slate-500">Silver</span>
-                        <span class="text-primary font-mono font-bold">$29.12</span>
-                        <span class="text-emerald-500 text-xs font-bold">+1.21%</span>
-                    </div>
+        <div class="max-w-7xl mx-auto px-4 md:px-6 py-3 flex items-center justify-between">
+            <!-- Logo (Left) -->
+            <a href="{% url 'home' %}" class="flex items-center gap-3 shrink-0">
+                <img src="{% static 'images/logo.png' %}" alt="Avalanch Metal" class="h-12 w-auto">
+            </a>
+            
+            <!-- Spot Price Ticker (Center) -->
+            <div class="hidden lg:flex items-center gap-6 overflow-hidden max-w-2xl whitespace-nowrap border-l border-r border-white/10 px-8 flex-1 justify-center">
+                <div class="flex items-center gap-2">
+                    <span class="text-xs uppercase font-bold text-slate-500">Gold (XAU/USD)</span>
+                    <span class="text-primary font-mono font-bold">$2,350.40</span>
+                    <span class="text-emerald-500 text-xs font-bold">+0.84%</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-xs uppercase font-bold text-slate-500">Silver</span>
+                    <span class="text-primary font-mono font-bold">$29.12</span>
+                    <span class="text-emerald-500 text-xs font-bold">+1.21%</span>
                 </div>
             </div>
-            <div class="flex items-center gap-3 md:gap-4">
+            
+            <!-- Right Side (Notifications + User) -->
+            <div class="flex items-center gap-3 shrink-0">
                 <!-- Notification Button -->
                 <div class="relative" id="notification-container">
                     <button id="notification-btn" class="p-2 text-slate-400 hover:text-primary transition-colors">
@@ -285,7 +287,7 @@
         </div>
         
         <!-- Main Dashboard Area -->
-        <main class="flex-1 overflow-y-auto hide-scrollbar p-4 md:p-6 lg:p-10">
+        <main class="flex-1 overflow-y-auto hide-scrollbar p-4 md:p-6 lg:p-10 pb-24 md:pb-6 lg:pb-10">
             {% block content %}{% endblock %}
         </main>
     </div>

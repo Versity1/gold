@@ -1,6 +1,88 @@
 from django.core.mail import send_mail
 from django.conf import settings
 from django.template.loader import render_to_string
+from django.utils import timezone
+
+
+def send_login_email(user, request=None):
+    """Send a login notification email to the user."""
+    login_time = timezone.now().strftime('%B %d, %Y at %H:%M:%S UTC')
+    
+    # Try to get IP address from request
+    ip_address = 'Unknown'
+    if request:
+        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+        if x_forwarded_for:
+            ip_address = x_forwarded_for.split(',')[0].strip()
+        else:
+            ip_address = request.META.get('REMOTE_ADDR', 'Unknown')
+
+    message = f"""
+    Dear {user.first_name or user.username},
+
+    We detected a successful login to your Avalanch Metal account.
+
+    Login Details:
+    - Date & Time: {login_time}
+    - IP Address: {ip_address}
+    - Username: {user.username}
+
+    If this was you, no further action is needed.
+
+    If you did not log in, please secure your account immediately by changing your password and contacting our support team at support@avalanchmetal.com.
+
+    Best regards,
+    The Avalanch Metal Team
+    """
+
+    try:
+        send_mail(
+            'Login Notification - Avalanch Metal',
+            message,
+            settings.DEFAULT_FROM_EMAIL if hasattr(settings, 'DEFAULT_FROM_EMAIL') else 'support@avalanchmetal.com',
+            [user.email],
+            fail_silently=True,
+        )
+    except Exception as e:
+        print(f"Error sending login email: {e}")
+
+
+def send_registration_email(user):
+    """Send a welcome email to newly registered users."""
+    message = f"""
+    Dear {user.first_name or user.username},
+
+    Welcome to Avalanch Metal! Your account has been successfully created.
+
+    Account Details:
+    - Username: {user.username}
+    - Email: {user.email}
+    - Registration Date: {timezone.now().strftime('%B %d, %Y')}
+
+    Here's what you can do next:
+    - Fund your account and start investing in gold
+    - Explore our investment plans for daily returns
+    - Trade gold shares backed by physical assets
+    - Complete KYC verification to enable withdrawals
+
+    If you have any questions, our support team is available 24/7 at support@avalanchmetal.com.
+
+    Thank you for choosing Avalanch Metal. We look forward to helping you grow your wealth.
+
+    Best regards,
+    The Avalanch Metal Team
+    """
+
+    try:
+        send_mail(
+            'Welcome to Avalanch Metal!',
+            message,
+            settings.DEFAULT_FROM_EMAIL if hasattr(settings, 'DEFAULT_FROM_EMAIL') else 'support@avalanchmetal.com',
+            [user.email],
+            fail_silently=True,
+        )
+    except Exception as e:
+        print(f"Error sending registration email: {e}")
 
 def send_transaction_email(user, transaction):
     subject = f"Transaction Notification: {transaction.transaction_type.capitalize()}"
@@ -28,17 +110,17 @@ def send_transaction_email(user, transaction):
 
     Your current account balance is: {user.account.balance}
 
-    Thank you for choosing Techodrill Oil and Gas.
+    Thank you for choosing Avalanch Metal.
 
     Best regards,
-    The Techodrill Team
+    The Avalanch Metal Team
     """
     
     try:
         send_mail(
             subject,
             message,
-            settings.DEFAULT_FROM_EMAIL if hasattr(settings, 'DEFAULT_FROM_EMAIL') else 'noreply@techodrill.com',
+            settings.DEFAULT_FROM_EMAIL if hasattr(settings, 'DEFAULT_FROM_EMAIL') else 'support@avalanchmetal.com',
             [user.email],
             fail_silently=False,
         )
@@ -63,17 +145,17 @@ def send_transaction_request_email(user, request_type, amount, withdrawal=None):
 
     Our team is currently verifying the transaction. You will receive another notification once it has been processed and credited/debited from your balance.
 
-    Thank you for choosing Techodrill Oil and Gas.
+    Thank you for choosing Avalanch Metal.
 
     Best regards,
-    The Techodrill Team
+    The Avalanch Metal Team
     """
     
     try:
         send_mail(
             subject,
             message,
-            settings.DEFAULT_FROM_EMAIL if hasattr(settings, 'DEFAULT_FROM_EMAIL') else 'noreply@techodrill.com',
+            settings.DEFAULT_FROM_EMAIL if hasattr(settings, 'DEFAULT_FROM_EMAIL') else 'support@avalanchmetal.com',
             [user.email],
             fail_silently=False,
         )
@@ -134,17 +216,17 @@ def send_investment_email(user, investment_type, investment_name, amount, units=
 
     You can track your investment performance in your dashboard.
 
-    Thank you for investing with Techodrill Oil and Gas. We're committed to helping you grow your wealth.
+    Thank you for investing with Avalanch Metal. We're committed to helping you grow your wealth.
 
     Best regards,
-    The Techodrill Team
+    The Avalanch Metal Team
     """
     
     try:
         send_mail(
             subject,
             message,
-            settings.DEFAULT_FROM_EMAIL if hasattr(settings, 'DEFAULT_FROM_EMAIL') else 'noreply@techodrill.com',
+            settings.DEFAULT_FROM_EMAIL if hasattr(settings, 'DEFAULT_FROM_EMAIL') else 'support@avalanchmetal.com',
             [user.email],
             fail_silently=False,
         )

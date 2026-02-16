@@ -1,6 +1,6 @@
 {% extends 'base_dashboard.html' %}
 
-{% block title %}Shares & Bonds Purchase - Techo Drill{% endblock %}
+{% block title %}Shares & Bonds Purchase - Avalanch Metal{% endblock %}
 
 {% block content %}
     <!-- Main Content -->
@@ -12,7 +12,7 @@
                 <div class="flex flex-col md:flex-row items-center md:items-start gap-6 px-4 pt-2 pb-6 md:px-0">
                     <div class="bg-center bg-no-repeat bg-cover rounded-xl h-24 w-24 shadow-md border-2 border-white dark:border-[#2A3B4D]" data-alt="Oil rig silhouette against a sunset gradient" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAeIi0JFoUfUJYj6a65pedsVBt7RYgR42TW8hZ3e0BaMwZH8u-uxmRdBpcuBobO5PNMYUpHZ6hJ4Z1HQxE0bOksfzKnSl90FNV5ZF7zs5dpwxuUQrR5LwqFgHHkAxr9skaGnh58JHxsOES99jwzAqopJDzfrj8Ch5BeI4Jv4ys8h9Yp9tQ_xtf3zsyXST_-gtwj0rTY82twQUbiy3qnBuR6j7lSyj7Rum0MoR_YkkKycodtQRXwjvNOPmjSLsc6dINJHCGAbFyX3dY3");'></div>
                     <div class="flex flex-col items-center md:items-start justify-center flex-1">
-                        <h1 class="text-text-main-light dark:text-text-main-dark text-3xl font-bold leading-tight tracking-[-0.015em] text-center md:text-left">{{ tdi_share.name|default:"Techo Drill Innovation" }}</h1>
+                        <h1 class="text-text-main-light dark:text-text-main-dark text-3xl font-bold leading-tight tracking-[-0.015em] text-center md:text-left">{{ tdi_share.name|default:"Avalanch Metal" }}</h1>
                          <div class="flex items-center gap-3 mt-2">
                             <span class="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider">NASDQ: {{ tdi_share.ticker|default:"TDI" }}</span>
                             <span class="text-text-sec-light dark:text-text-sec-dark text-sm font-medium">Oil & Gas Exploration</span>
@@ -139,7 +139,7 @@
                             <div class="flex items-center gap-3">
                                 <div id="selectedAssetIcon" class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center font-bold text-primary">{{ tdi_share.ticker|slice:":1"|default:"T" }}</div>
                                 <div>
-                                    <p id="selectedAssetName" class="text-text-main-light dark:text-text-main-dark font-bold">{{ tdi_share.name|default:"Techo Drill Innovation" }}</p>
+                                    <p id="selectedAssetName" class="text-text-main-light dark:text-text-main-dark font-bold">{{ tdi_share.name|default:"Avalanch Metal" }}</p>
                                     <p id="selectedAssetTicker" class="text-xs text-text-sec-light">{{ tdi_share.ticker|default:"TDI" }}</p>
                                 </div>
                             </div>
